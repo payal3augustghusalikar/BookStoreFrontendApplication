@@ -1,0 +1,48 @@
+<template>
+  <v-app class="display-card">
+    <v-main>
+      <v-flex>
+        <v-card class="main-card mx-auto mt-9 pl-5 pr-5">
+          <v-tabs centered>
+            <v-tab>Login</v-tab>
+            <v-tab-item key="login">
+              <Login />
+            </v-tab-item>
+            <v-tab>Sign up</v-tab>
+            <v-tab-item key="signUp">
+              <SignUp />
+            </v-tab-item>
+          </v-tabs>
+        </v-card>
+      </v-flex>
+    </v-main>
+  </v-app>
+</template>
+
+<script lang="ts">
+import Vue from "vue";
+import Component from "vue-class-component";
+//import User from "../services/user";
+import SignUp from "./signUp.vue";
+import Login from "./login.vue";
+@Component({
+  components: {
+    SignUp,
+    Login,
+  },
+})
+export default class loginOrRegister extends Vue {
+  // loginOrRegister: Array<object> = [
+  //   {
+  //     name: "SignUp",
+  //   },
+  //   {
+  //     name: "Login",
+  //   },
+  // ];
+}
+</script>
+
+<style lang="scss">
+@import url("../assets/scss/register.scss");
+</style>
