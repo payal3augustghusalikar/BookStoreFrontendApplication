@@ -37,9 +37,12 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "nuxt-property-decorator";
+import { Component, Vue , namespace } from "nuxt-property-decorator";
 import user from "../services/user";
-import Dashboard from "./dashboard.vue";
+// import Dashboard from "./dashboard.vue";
+ //const snackbar = namespace('snackbar')
+  import {  Action } from 'vuex-class';
+  const showSnack = namespace('snackbar', Action)
 @Component({
   //  Dashboard
 })
@@ -48,6 +51,9 @@ export default class login extends Vue {
   lazy: boolean = false;
   name: string = "";
   showPassword: boolean = false;
+  @showSnack showSnack: any
+@Action('showSnack')
+// showSnack!: (showSnack: string) => void
 
   form: any = {
     email: null,
@@ -61,6 +67,8 @@ export default class login extends Vue {
   };
   emailId: string = "";
   password: string = "";
+   text: String = "";
+    timeout:Number=0;
   emailRules = {
     required: (v: string) => !!v || "E-mail is required",
     email_validation: (v: string) =>
@@ -87,9 +95,14 @@ export default class login extends Vue {
           sessionStorage.setItem("token", data.data.token);
         
           console.log(" login is ");
-          
-          this.$router.push("/dashboard");
-        
+          var snack:any = {
+              text: 'login Successful!',
+              timeout :3500
+            }
+          this.showSnack(snack)
+        //  this.$router.push("/dashboard");
+     //   @snackbar.Action('snackbar', ['showSnack']);
+    
         })
         .catch((error) => {
           console.warn("error for login is ", error);

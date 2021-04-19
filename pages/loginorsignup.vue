@@ -27,7 +27,6 @@
 <script lang="ts">
 import Vue from "vue";
 import Component from "vue-class-component";
-//import User from "../services/user";
 import SignUp from "./signUp.vue";
 import Login from "./login.vue";
 @Component({
@@ -37,14 +36,6 @@ import Login from "./login.vue";
   },
 })
 export default class loginOrRegister extends Vue {
-  // loginOrRegister: Array<object> = [
-  //   {
-  //     name: "SignUp",
-  //   },
-  //   {
-  //     name: "Login",
-  //   },
-  // ];
 }
 </script>
 
