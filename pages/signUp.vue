@@ -70,9 +70,11 @@
 import { Component, Vue } from "nuxt-property-decorator";
 import user from "../services/user";
 import SnackbarNotify from "../components/snackbarNotify.vue";
-import Dashboard from "./dashboard.vue";
+
 @Component({
-  //  Dashboard
+components: {
+    SnackbarNotify
+  }
 })
 export default class login extends Vue {
   valid: boolean = true;
@@ -121,24 +123,17 @@ export default class login extends Vue {
         .registerUser(data)
         .then((result) => {
           console.log("Success", result);
-          // window.setTimeout(() => {
           this.user = `${data.firstName} ${data.lastName}`;
-          //  router.push({ name: 'login' });
           this.$router.push("/dashboard");
           var snack: any = {
-            text: "login Successful!",
+            text: "register Successful!",
             timeout: 3500,
           };
-
           this.$refs.snack.setSnackbar(snack);
-          //  this.showSnack(snack)
-
-          //   this.reset();
-          // }, 2000);
         })
         .catch((error) => {
           var snack: any = {
-            text: "error while login, try again!",
+            text: "error while register, try again!",
             timeout: 3500,
           };
           this.$refs.snack.setSnackbar(snack);
