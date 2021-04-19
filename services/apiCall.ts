@@ -18,8 +18,7 @@ export default {
      * @returns the response from axios methods
      */
     post(userData:any) {
-        console.log("baseurl ", )
-        console.log("userdata", userData)
+      console.log("apicall")
         return axios.post(userData.endPoint, userData.userInput);
     }
 }

@@ -1,21 +1,23 @@
 <template>
   <v-form ref="validattion" v-model="valid" :lazy-validation="lazy">
     <br />
- <v-text-field
+    <v-text-field
       outlined
       dense
       v-model="form.firstName"
       :rules="[nameRules.required, nameRules.name_length]"
       label="firstName"
       required
+      autocomplete="off"
     ></v-text-field>
- <v-text-field
+    <v-text-field
       outlined
       dense
       v-model="form.lastName"
       :rules="[nameRules.required, nameRules.name_length]"
       label="lastName"
       required
+      autocomplete="off"
     ></v-text-field>
     <v-text-field
       outlined
@@ -24,6 +26,7 @@
       :rules="[emailRules.required, emailRules.email_validation]"
       label="E-mail"
       required
+      autocomplete="off"
     ></v-text-field>
 
     <v-text-field
@@ -50,9 +53,8 @@
       @click:append="showPassword = !showPassword"
       required
     ></v-text-field>
-   <v-btn x-large block :disabled="!valid" class="button" @click="validatee"
-   
-      >SignUp</v-btn
+  <button x-large block :disabled="!valid" class="button" @click.prevent.stop="validatee" 
+      >SignUp</button
     >
   </v-form>
 </template>
@@ -62,7 +64,7 @@ import { Component, Vue } from "nuxt-property-decorator";
 import user from "../services/user";
 import Dashboard from "./dashboard.vue";
 @Component({
-//  Dashboard
+  //  Dashboard
 })
 export default class login extends Vue {
   valid: boolean = true;
@@ -71,17 +73,16 @@ export default class login extends Vue {
   showPassword: boolean = false;
 
   form: any = {
-  
-      firstName: null,
-      lastName: null,
-      email: null,
-      password: null,
-      cpassword: null,
-  
+    firstName: null,
+    lastName: null,
+    email: null,
+    password: null,
+    cpassword: null,
   };
-nameRules={
-     required:(v:string) => !!v || 'field is required',
-     name_length:(v:string) => (v && v.length <= 10) || 'field must be less than 10 characters',
+  nameRules = {
+    required: (v: string) => !!v || "field is required",
+    name_length: (v: string) =>
+      (v && v.length <= 10) || "field must be less than 10 characters",
   };
 
   passwordRules = {
@@ -91,7 +92,7 @@ nameRules={
   };
   emailId: string = "";
   password: string = "";
-  user : string="";
+  user: string = "";
   emailRules = {
     required: (v: string) => !!v || "E-mail is required",
     email_validation: (v: string) =>
@@ -99,7 +100,7 @@ nameRules={
   };
 
   public validatee = () => {
-    console.log("inside vv");
+  
     if ((<any>this.$refs.validattion).validate()) {
       var data = {
         firstName: this.form.firstName,
@@ -108,24 +109,22 @@ nameRules={
         password: this.form.password,
         confirmPassword: this.form.cpassword,
       };
-      console.log("data ", data);
-     user
+      
+      user
         .registerUser(data)
         .then((result) => {
-          console.log('Success', result);
-           window.setTimeout(() => {
+          console.log("Success", result);
+          window.setTimeout(() => {
             this.user = `${data.firstName} ${data.lastName}`;
-           
-           this.reset();
+
+            this.reset();
           }, 2000);
         })
-         .catch((error) => {
-        
-           console.warn('error ', error);
-        } );  
-    
-//router.push({ name: 'Dashboard' });
-      
+        .catch((error) => {
+          console.warn("error ", error);
+        });
+
+      //router.push({ name: 'Dashboard' });
     }
   };
 
@@ -138,6 +137,12 @@ nameRules={
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+#btn {
+    background:  #A03037 ;
+    border-radius: 3px;
+    opacity: 1;
+    color: #bb0511
+  }
 @import url("../assets/scss/register.scss");
 </style>

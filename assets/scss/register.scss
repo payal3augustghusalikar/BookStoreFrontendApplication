@@ -7,22 +7,42 @@
     left: 0px;
     width: 1566px;
     height: 100%;
-   background: #0a0909 0% 0% no-repeat padding-box;
+   background: $white 0% 0% no-repeat padding-box;
     opacity: 0.31;
   }
  
   .main-card {
     top: 90px;
-    left: 158px;
+   
+    right: 200px;
     width: 389px;
     height: 475px;
    @include login-or-register;
    
   }
-
+  .shopping-card{
+    top: 120px;
+    left: 240px;
+    width: 389px;
+    height: 415px;
+   @include login-or-register;
+   
+  }
   .button {
     background: $brown 0% 0% no-repeat padding-box;
-    border-radius: 3px;
-    opacity: 1;
+    width: 352px;
+    height: 37px;
+    left: 727px;
+    color: $white;
+    font-size: 18px; 
   }
 
+.shopping-image {
+  top: 237px;
+  left: 373px;
+  width: 245px;
+  height: 245px;
+
+  background: transparent url('./images/shopping-trolly.png') 0% 0% no-repeat padding-box;
+ 
+}

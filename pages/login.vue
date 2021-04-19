@@ -9,6 +9,7 @@
       :rules="[emailRules.required, emailRules.email_validation]"
       label="E-mail"
       required
+      autocomplete="off"
     ></v-text-field>
 
     <v-text-field
@@ -23,9 +24,15 @@
       @click:append="showPassword = !showPassword"
       required
     ></v-text-field>
-    <v-btn x-large block :disabled="!valid" class="submitButton" @click="validatee"
-      >Login</v-btn
+    <button
+      x-large
+      block
+      :disabled="!valid"
+      class="button"
+      @click.prevent.stop="validate"
     >
+      Login
+    </button>
   </v-form>
 </template>
 
@@ -34,7 +41,7 @@ import { Component, Vue } from "nuxt-property-decorator";
 import user from "../services/user";
 import Dashboard from "./dashboard.vue";
 @Component({
-//  Dashboard
+  //  Dashboard
 })
 export default class login extends Vue {
   valid: boolean = true;
@@ -60,7 +67,7 @@ export default class login extends Vue {
       /.+@.+\..+/.test(v) || "E-mail must be valid",
   };
 
-  public validatee = () => {
+  public validate = () => {
     console.log("inside vv");
     if ((<any>this.$refs.validattion).validate()) {
       var data = {
@@ -71,25 +78,27 @@ export default class login extends Vue {
       user
         .loginUser(data)
         .then((data) => {
-            console.log("data", data)
+          console.log("success data ", data);
+          console.log(" data.data.data[0].user[0]", data.data.data[0].user.firstName);
+          console.log(" data.data[0]", data.data[0]);
+          sessionStorage.setItem("firstName", data.data.data[0].user.firstName);
+          sessionStorage.setItem("lastName", data.data.data[0].user.lastName);
+          sessionStorage.setItem("emailId", data.data.data[0].user.emailId);
           sessionStorage.setItem("token", data.data.token);
-          sessionStorage.setItem("firstName", data.data.user[0].firstName);
-          sessionStorage.setItem("lastName", data.data.user[0].lastName);
-          sessionStorage.setItem("emailId", data.data.user[0].emailId);
-          window.setTimeout(() => {
-            
-             this.reset();
-           // this.$nuxt.$options.router.push()({ name: 'Dashboard' });
-          });
+          //   window.setTimeout(() => {
+          console.log(" login is ");
+          //  this.reset();
+          this.$router.push("/dashboard");
+          //  this.$nuxt.$options.router.push()({ name: 'Dashboard' });
+          //    $nuxt.$options.$route.push()({ name: 'Dashboard' });
+
+          //  });
         })
         .catch((error) => {
-          
-          //this.userNotLoggedIn = true;
-          // this.sending = false;
           console.warn("error for login is ", error);
+          // this.$router.push("/dashboard");
         });
-//router.push({ name: 'Dashboard' });
-      
+      //router.push({ name: 'Dashboard' });
     }
   };
 
@@ -104,12 +113,5 @@ export default class login extends Vue {
 
 
 <style lang="scss">
-.submitButton {
-    background:  #A03037 0% 0% no-repeat padding-box;
-    border-radius: 3px;
-    opacity: 1;
-  }
-
-
 @import url("../assets/scss/register.scss");
 </style>

@@ -27,7 +27,7 @@ export default {
      * @returns the response from api calling methods
      */
     loginUser(data: any) {
-console.log("serv data", data)
+
         const userData = {
             userInput: data,
             endPoint: '/user-login'

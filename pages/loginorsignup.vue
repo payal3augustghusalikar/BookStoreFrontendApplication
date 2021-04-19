@@ -1,19 +1,24 @@
 <template>
-  <v-app class="display-card">
-    <v-main>
+  <v-app>
+    <v-main class="display-card">
       <v-flex>
-        <v-card class="main-card mx-auto mt-9 pl-5 pr-5">
-          <v-tabs centered>
-            <v-tab>Login</v-tab>
-            <v-tab-item key="login">
-              <Login />
-            </v-tab-item>
-            <v-tab>Sign up</v-tab>
-            <v-tab-item key="signUp">
-              <SignUp />
-            </v-tab-item>
-          </v-tabs>
-        </v-card>
+        <v-row>
+          <v-card class="shopping-card mx-auto mt-9 pl-5 pr-5">
+                <img class="shopping-image" />
+          </v-card>
+          <v-card class="main-card mx-auto mt-9 pl-5 pr-5">
+            <v-tabs centered>
+              <v-tab>Login</v-tab>
+              <v-tab-item key="login">
+                <Login />
+              </v-tab-item>
+              <v-tab>Sign up</v-tab>
+              <v-tab-item key="signUp">
+                <SignUp />
+              </v-tab-item>
+            </v-tabs>
+          </v-card>
+        </v-row>
       </v-flex>
     </v-main>
   </v-app>
