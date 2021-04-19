@@ -1,68 +1,143 @@
-
 <template>
-<v-form ref="validation_check">
-  <v-container>
-    <v-row>
-      <v-col cols="12" sm="6" md="3">
-        <v-text-field
-            label="name"
-            v-model="text"
-            :rules="[textValidation.required,textValidation.limit_lemgth]"
-            counter="10"
-          ></v-text-field>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col cols="12" sm="6" md="3">
-        <v-text-field
-            label="phone"
-            v-model="phone"
-            :rules="[textValidation.required,textValidation.text_length2]"
-            counter="7"
-          ></v-text-field>
-      </v-col>
-    </v-row>
-    <v-divider></v-divider>
-    <v-row>
-      <v-col cols="6">
-        <v-btn @click="submit">submit</v-btn>
-        <span v-if="success">ConguratsValidation is no prob!!</span>
-      </v-col>
-    </v-row>
-  </v-container>
-</v-form>
+  <v-form ref="validattion" v-model="valid" :lazy-validation="lazy">
+    <br />
+ <v-text-field
+      outlined
+      dense
+      v-model="form.firstName"
+      :rules="[nameRules.required, nameRules.name_length]"
+      label="firstName"
+      required
+    ></v-text-field>
+ <v-text-field
+      outlined
+      dense
+      v-model="form.lastName"
+      :rules="[nameRules.required, nameRules.name_length]"
+      label="lastName"
+      required
+    ></v-text-field>
+    <v-text-field
+      outlined
+      dense
+      v-model="form.email"
+      :rules="[emailRules.required, emailRules.email_validation]"
+      label="E-mail"
+      required
+    ></v-text-field>
+
+    <v-text-field
+      outlined
+      dense
+      v-model="form.password"
+      :counter="10"
+      :rules="[passwordRules.required, passwordRules.minLength]"
+      label="password"
+      :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+      :type="showPassword ? 'text' : 'password'"
+      @click:append="showPassword = !showPassword"
+      required
+    ></v-text-field>
+    <v-text-field
+      outlined
+      dense
+      v-model="form.cpassword"
+      :counter="10"
+      :rules="[passwordRules.required, passwordRules.minLength]"
+      label="confirm Password"
+      :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+      :type="showPassword ? 'text' : 'password'"
+      @click:append="showPassword = !showPassword"
+      required
+    ></v-text-field>
+   <v-btn x-large block :disabled="!valid" class="button" @click="validatee"
+   
+      >SignUp</v-btn
+    >
+  </v-form>
 </template>
 
-
 <script lang="ts">
-import {Component, Vue} from "nuxt-property-decorator";
-@Component({})
-export default class form extends Vue {
-  text: string = "";
-  phone?: number;
-  success:boolean=false;
-  textValidation={
-     required:(v:string)=>!!v||'this is required',
-     limit_lemgth:(v:string)=>v.length<=10||'Name must be less than 10 characters',
-     text_length2:(v:string)=>v.length<=10||'Phone number must be less than 7 characters',
+import { Component, Vue } from "nuxt-property-decorator";
+import user from "../services/user";
+import Dashboard from "./dashboard.vue";
+@Component({
+//  Dashboard
+})
+export default class login extends Vue {
+  valid: boolean = true;
+  lazy: boolean = false;
+  name: string = "";
+  showPassword: boolean = false;
+
+  form: any = {
+  
+      firstName: null,
+      lastName: null,
+      email: null,
+      password: null,
+      cpassword: null,
+  
+  };
+nameRules={
+     required:(v:string) => !!v || 'field is required',
+     name_length:(v:string) => (v && v.length <= 10) || 'field must be less than 10 characters',
   };
 
+  passwordRules = {
+    required: (v: string) => !!v || "password is required",
+    minLength: (v: string) =>
+      (v && v.length > 7) || "password must be 8 characters",
+  };
+  emailId: string = "";
+  password: string = "";
+  user : string="";
+  emailRules = {
+    required: (v: string) => !!v || "E-mail is required",
+    email_validation: (v: string) =>
+      /.+@.+\..+/.test(v) || "E-mail must be valid",
+  };
 
- 
-  submit(){
-    if((this.$refs.validation_check as any).validate()){
-        this.success=true
-    }else{
-        this.success=false;
+  public validatee = () => {
+    console.log("inside vv");
+    if ((<any>this.$refs.validattion).validate()) {
+      var data = {
+        firstName: this.form.firstName,
+        lastName: this.form.lastName,
+        emailId: this.form.email,
+        password: this.form.password,
+        confirmPassword: this.form.cpassword,
+      };
+      console.log("data ", data);
+     user
+        .registerUser(data)
+        .then((result) => {
+          console.log('Success', result);
+           window.setTimeout(() => {
+            this.user = `${data.firstName} ${data.lastName}`;
+           
+           this.reset();
+          }, 2000);
+        })
+         .catch((error) => {
+        
+           console.warn('error ', error);
+        } );  
+    
+//router.push({ name: 'Dashboard' });
+      
     }
-}
+  };
+
+  reset() {
+    (<any>this.$refs.validattion).reset();
+  }
+  resetValidation() {
+    (<any>this.$refs.validattion).resetValidation();
+  }
 }
 </script>
-<style lang="scss" scoped>
+
+<style lang="scss">
 @import url("../assets/scss/register.scss");
 </style>
-
-
-
-
-
