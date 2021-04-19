@@ -116,7 +116,7 @@ export default class login extends Vue {
           console.log("Success", result);
           window.setTimeout(() => {
             this.user = `${data.firstName} ${data.lastName}`;
-
+  //  router.push({ name: 'login' });
             this.reset();
           }, 2000);
         })
@@ -124,7 +124,7 @@ export default class login extends Vue {
           console.warn("error ", error);
         });
 
-      //router.push({ name: 'Dashboard' });
+  
     }
   };
 
@@ -138,11 +138,6 @@ export default class login extends Vue {
 </script>
 
 <style lang="scss" scoped>
-#btn {
-    background:  #A03037 ;
-    border-radius: 3px;
-    opacity: 1;
-    color: #bb0511
-  }
+
 @import url("../assets/scss/register.scss");
 </style>

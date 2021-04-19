@@ -85,20 +85,17 @@ export default class login extends Vue {
           sessionStorage.setItem("lastName", data.data.data[0].user.lastName);
           sessionStorage.setItem("emailId", data.data.data[0].user.emailId);
           sessionStorage.setItem("token", data.data.token);
-          //   window.setTimeout(() => {
+        
           console.log(" login is ");
-          //  this.reset();
+          
           this.$router.push("/dashboard");
-          //  this.$nuxt.$options.router.push()({ name: 'Dashboard' });
-          //    $nuxt.$options.$route.push()({ name: 'Dashboard' });
-
-          //  });
+        
         })
         .catch((error) => {
           console.warn("error for login is ", error);
-          // this.$router.push("/dashboard");
+        
         });
-      //router.push({ name: 'Dashboard' });
+   
     }
   };
 
