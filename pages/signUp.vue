@@ -53,15 +53,23 @@
       @click:append="showPassword = !showPassword"
       required
     ></v-text-field>
-  <button x-large block :disabled="!valid" class="button" @click.prevent.stop="validatee" 
-      >SignUp</button
+    <button
+      x-large
+      block
+      :disabled="!valid"
+      class="button"
+      @click.prevent.stop="validatee"
     >
+      SignUp
+    </button>
+    <SnackbarNotify ref="snack" />
   </v-form>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "nuxt-property-decorator";
 import user from "../services/user";
+import SnackbarNotify from "../components/snackbarNotify.vue";
 import Dashboard from "./dashboard.vue";
 @Component({
   //  Dashboard
@@ -100,7 +108,6 @@ export default class login extends Vue {
   };
 
   public validatee = () => {
-  
     if ((<any>this.$refs.validattion).validate()) {
       var data = {
         firstName: this.form.firstName,
@@ -109,25 +116,35 @@ export default class login extends Vue {
         password: this.form.password,
         confirmPassword: this.form.cpassword,
       };
-      
+
       user
         .registerUser(data)
         .then((result) => {
           console.log("Success", result);
-          window.setTimeout(() => {
-            this.user = `${data.firstName} ${data.lastName}`;
-  //  router.push({ name: 'login' });
-            this.reset();
-          }, 2000);
+          // window.setTimeout(() => {
+          this.user = `${data.firstName} ${data.lastName}`;
+          //  router.push({ name: 'login' });
+          this.$router.push("/dashboard");
+          var snack: any = {
+            text: "login Successful!",
+            timeout: 3500,
+          };
+
+          this.$refs.snack.setSnackbar(snack);
+          //  this.showSnack(snack)
+
+          //   this.reset();
+          // }, 2000);
         })
         .catch((error) => {
-          console.warn("error ", error);
+          var snack: any = {
+            text: "error while login, try again!",
+            timeout: 3500,
+          };
+          this.$refs.snack.setSnackbar(snack);
         });
-
-  
     }
   };
-
   reset() {
     (<any>this.$refs.validattion).reset();
   }
@@ -138,6 +155,5 @@ export default class login extends Vue {
 </script>
 
 <style lang="scss" scoped>
-
 @import url("../assets/scss/register.scss");
 </style>

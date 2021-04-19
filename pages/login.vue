@@ -33,26 +33,31 @@
     >
       Login
     </button>
+      <SnackbarNotify ref="snack" />
   </v-form>
 </template>
 
 <script lang="ts">
 import { Component, Vue , namespace } from "nuxt-property-decorator";
 import user from "../services/user";
+import SnackbarNotify from "../components/snackbarNotify.vue";
 // import Dashboard from "./dashboard.vue";
  //const snackbar = namespace('snackbar')
   import {  Action } from 'vuex-class';
-  const showSnack = namespace('snackbar', Action)
+  //const showSnack = namespace('snackbar', Action)
 @Component({
   //  Dashboard
+  components: {
+    SnackbarNotify
+  }
+ 
 })
 export default class login extends Vue {
   valid: boolean = true;
   lazy: boolean = false;
   name: string = "";
   showPassword: boolean = false;
-  @showSnack showSnack: any
-@Action('showSnack')
+
 // showSnack!: (showSnack: string) => void
 
   form: any = {
@@ -67,8 +72,8 @@ export default class login extends Vue {
   };
   emailId: string = "";
   password: string = "";
-   text: String = "";
-    timeout:Number=0;
+  //  text: String = "";
+  //   timeout:Number=0;
   emailRules = {
     required: (v: string) => !!v || "E-mail is required",
     email_validation: (v: string) =>
@@ -99,13 +104,18 @@ export default class login extends Vue {
               text: 'login Successful!',
               timeout :3500
             }
-          this.showSnack(snack)
-        //  this.$router.push("/dashboard");
+           this.$refs.snack.setSnackbar(snack)
+        //  this.showSnack(snack)
+          this.$router.push("/dashboard");
      //   @snackbar.Action('snackbar', ['showSnack']);
     
         })
         .catch((error) => {
-          console.warn("error for login is ", error);
+         var snack:any = {
+              text: 'error while login, try again!',
+              timeout :3500
+            }
+           this.$refs.snack.setSnackbar(snack)
         
         });
    
