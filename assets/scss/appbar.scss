@@ -1,8 +1,10 @@
-
+@import './common.scss';
+@import '../variables.scss';
 .supermarket-icon {
-    margin-left: 50px;
-    margin-top: -2px;
-
+    margin-left: 40px;
+    margin-top: -10px;
+    min-height:19px;
+    min-width:19px;
 }
 .title {
     font-size: 14px;
@@ -12,7 +14,7 @@
 }
 .avatar {
     margin-left: 110px;
-    margin-top: 1px;
+    margin-top: -3px;
 }
 #top-search-bar {
     margin-top: 22px;
@@ -34,3 +36,21 @@
 .white {
     font-variant: normal;
 }
+
+
+#bottom-name {
+    font-size: 11px;
+   margin-bottom: -11px;
+   color:white;
+   padding-left: -1px;
+}
+
+#bottom-name-cart {
+    font-size: 11px;
+   margin-bottom: -21px;
+ 
+   color:white;
+   padding-left: 10px;
+}
+
+

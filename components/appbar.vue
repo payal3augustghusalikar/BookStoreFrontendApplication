@@ -21,26 +21,28 @@
               solo
             ></v-text-field>
           </div>
-          <div class="avatar">
-            <v-icon  class="white--text mr-8 account-icon">mdi-account-outline</v-icon>
-          </div>
-          <v-img
-            class="mx-2 supermarket-icon white--text headline"
-            max-height="25"
-            max-width="25"
-            contain
-            :src="require('@/assets/scss/images/supermarket.svg')"
-          ></v-img>
-          <div class="phone-viewport">
-            <md-bottom-bar class="md-accent" md-sync-route>
-              <md-bottom-bar-item
-                to="/components/bottom-bar/posts/1"
-                md-label="Post 1"
-                md-icon="/assets/icon-whatshot.svg"
-              ></md-bottom-bar-item>
-            </md-bottom-bar>
-          </div>
-          
+            <ul>
+            <div class="avatar">
+            
+              <v-icon class="white--text mr-8 account-icon"
+                >mdi-account-outline</v-icon
+              >
+            
+             
+                  <p id="bottom-name"> Payal </p>
+            </div>
+            </ul>
+         
+          <ul>
+            <v-img
+              class="mx-2 supermarket-icon white--text headline"
+            
+              contain
+              :src="require('@/assets/scss/images/supermarket.svg')"
+            ></v-img>
+       
+                  <p id="bottom-name-cart">  Cart</p>
+          </ul>
         </v-app-bar>
       </v-row>
     </v-card>
@@ -56,3 +58,13 @@ export default Vue.extend({});
 <style lang="scss" scoped>
 @import url("../assets/scss/appbar.scss");
 </style>
+
+
+
+
+
+
+
+
+
+

@@ -4,18 +4,18 @@
       <div class="display-card">
         <v-flex>
           <v-row>
-
-<v-card class="mx-auto shopping-card b-card" >
+            <v-card class="mx-auto shopping-card ">
+              <ul>
               <v-row class="book-image1">
                 <v-img
                   class="mx-auto mt-4 mb-4"
-                  :src="require('@/assets/scss/images/shopping-trolly.png')"
+                  :src="require('@/assets/scss/images/shopping-trolly-image.png')"
                 ></v-img>
               </v-row>
+  <p class=" shopping-text"> ONLINE BOOK SHOPPING </p>
+              </ul>
+            </v-card>
 
-</v-card>
-
-            
             <v-card class="main-card mx-auto mt-9 pl-5 pr-5">
               <v-tabs centered>
                 <v-tab>Login</v-tab>
