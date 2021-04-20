@@ -4,18 +4,14 @@
       <div class="display-card" >
         <v-flex >
           <v-row>
-            <v-card class="main-card mx-auto shopping-card mt-9 pl-5 pr-5">
-              <v-row align="start">
-                <v-col class="shrink">
-                  <v-img max-width="80" class="ml-3 image"></v-img>
-                </v-col>
-                <v-col>
-                  <v-card-title class="pa-0">Title</v-card-title>
-                  <v-card-subtitle>shoppnh</v-card-subtitle>
-                </v-col>
+          
+ <v-card class="mx-auto shopping-card " >
+              <v-row class="book-image  b-card">
+                <v-img
+                  class="mx-auto image1 mt-2 mb-2"
+                ></v-img>
               </v-row>
-            </v-card>
-
+ </v-card>
             <v-card class="main-card mx-auto mt-9 pl-5 pr-5">
               <v-tabs centered>
                 <v-tab>Login</v-tab>
@@ -51,4 +47,5 @@ export default class loginOrRegister extends Vue {}
 
 <style lang="scss">
 @import url("../assets/scss/register.scss");
+@import url("../assets/scss/image.scss");
 </style>

@@ -3,31 +3,8 @@
   <v-flex>
     <div id="app">
       <v-app id="inspire">
-        <v-card class="mx-auto overflow-hidden topBar">
-          <v-row>
-            <v-col>
-              <v-app-bar color="white" class="main-bar" fixed elevation="1">
-                <v-app-bar-nav-icon></v-app-bar-nav-icon>
-
-                <div id="top-search-bar">
-                  <v-text-field
-                    label="Search"
-                    prepend-inner-icon="mdi-magnify"
-                    fixed
-                    filled
-                    autocomplete="off"
-                    dense
-                    solo
-                  ></v-text-field>
-                </div>
-                <v-spacer> </v-spacer>
-                <md-avatar class="md-avatar-icon">P</md-avatar>
-              </v-app-bar>
-            </v-col>
-          </v-row>
-        </v-card>
+        <Appbar ref="appbar" />
         <v-row>
-          hii
           <Books ref="books" :allBooks="allBooks" />
         </v-row>
       </v-app>
@@ -40,10 +17,12 @@ import { Component, Vue } from "nuxt-property-decorator";
 import user from "../services/user";
 import SnackbarNotify from "../components/snackbarNotify.vue";
 import Books from "../components/books.vue";
+import Appbar from "../components/appbar.vue";
 @Component({
   components: {
     SnackbarNotify,
     Books,
+    Appbar,
   },
 })
 export default class Dashboard extends Vue {
@@ -51,14 +30,15 @@ export default class Dashboard extends Vue {
 
   beforeMount() {
     console.log("before mount");
-   // this.displayAllNotes();
+    // this.displayAllNotes();
+   // this.$refs.books.displayAllBooks();
   }
 
-  //  mounted() {
-  //      console.log("before mount")
-  // this.displayAllNotes()
-
-  //  }
+  mounted() {
+    console.log("before mount");
+    //this.displayAllNotes()
+   // 
+  }
   // public displayAllNotes = () => {
   //   console.log("disapl");
   //   user
@@ -81,6 +61,6 @@ export default class Dashboard extends Vue {
 </script>
 
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import url("../assets/scss/dashboard.scss");
 </style>

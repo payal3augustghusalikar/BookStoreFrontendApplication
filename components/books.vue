@@ -1,20 +1,19 @@
 <template>
   <div>
     <v-flex>
-      <v-row class="book-size">
-        <v-layout row wrap>
-          <h1>paayal</h1>
+      <v-row class="book-size" >
+        <v-layout row wrap class="book-layout">
           <v-flex
             v-for="item in allBooks"
             :key="item.books.title"
             md3
-            xs4
-            class="mb-10"
+            xs2
+            class="mb-5 mr--25 mt-2"
           >
             <v-card class="mx-auto b-card" outlined>
               <v-row class="book-image">
                 <v-img
-                  class="mx-auto mt-2 mb-2"
+                  class="mx-auto mt-4 mb-4"
                   :src="item.books.image"
                 ></v-img>
               </v-row>
@@ -71,9 +70,9 @@ export default class books extends Vue {
 
   beforeMount() {
     console.log("before mount");
-    this.displayAllNotes();
+    this.displayAllBooks();
   }
-  public displayAllNotes = () => {
+  public displayAllBooks = () => {
     user
       .getBooks()
       .then((result) => {
@@ -100,5 +99,5 @@ export default class books extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import url("../assets/scss/register.scss");
+@import url("../assets/scss/books.scss");
 </style>
