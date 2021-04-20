@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-flex>
-      <v-row class="book-size" >
+      <v-row class="book-size">
         <v-layout row wrap class="book-layout">
           <v-flex
             v-for="item in allBooks"
@@ -33,7 +33,6 @@
         </v-layout>
       </v-row>
     </v-flex>
-
     <SnackbarNotify ref="snack" />
   </div>
 </template>
@@ -42,31 +41,14 @@
 import { Component, Prop, Vue } from "nuxt-property-decorator";
 import user from "../services/user";
 import SnackbarNotify from "../components/snackbarNotify.vue";
-//import { Component,  Vue } from "vue-property-decorator";
+
 @Component({
   components: {
     SnackbarNotify,
   },
 })
 export default class books extends Vue {
-     @Prop() allBooks!: any
-
-  //   books: any
-  //     mounted() {
-  //        this.books = this.allBooks
-
-  //        console.log("books in boook", books)
-  //     }
-
-  //   allBookss: any;
-  //   setAllBookss(books: any) {
-  //     this.allBookss = books;
-  //     console.log("books in set", this.allBookss);
-  //     console.log("uuu", this.allBookss[0].books.title);
-  //   }
-  //   created() {
-  //     console.log("books in setttt", this.allBookss);
-  //   }
+  @Prop() allBooks!: any;
 
   beforeMount() {
     console.log("before mount");
@@ -78,21 +60,17 @@ export default class books extends Vue {
       .then((result) => {
         console.log("Success", result.data.data);
         this.allBooks = result.data.data;
-
-        //  this.user = `${data.firstName} ${data.lastName}`;
-        //  this.$router.push("/dashboard");
         var snack: any = {
           text: "register Successful!",
           timeout: 3500,
         };
-        //   this.$refs.snack.setSnackbar(snack);
       })
       .catch((error) => {
         var snack: any = {
-          text: "error while register, try again!",
+          text: "error , try again!",
           timeout: 3500,
         };
-        //  this.$refs.snack.setSnackbar(snack);
+        this.$refs.snack.setSnackbar(snack);
       });
   };
 }

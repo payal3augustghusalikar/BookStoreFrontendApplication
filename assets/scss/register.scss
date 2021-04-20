@@ -32,13 +32,24 @@ body{
 
   }
   .shopping-card{
-    top: 130px;
+    top: 167px;
     left: 190px;
     width: 389px;
     height: 415px;
    @include login-or-register;
 
   }
+
+  .book-image1 {
+    height: 220px;
+    width: 180px;
+    left: 28px;
+    justify-self: center;
+    background-color: $faintGrey;
+}
+.book-image {
+    background-color: rgb(228, 225, 225)
+}
   .button {
     background: $brown 0% 0% no-repeat padding-box;
     width: 352px;

@@ -30,33 +30,7 @@ export default class Dashboard extends Vue {
 
   beforeMount() {
     console.log("before mount");
-    // this.displayAllNotes();
-   // this.$refs.books.displayAllBooks();
   }
-
-  mounted() {
-    console.log("before mount");
-    //this.displayAllNotes()
-   // 
-  }
-  // public displayAllNotes = () => {
-  //   console.log("disapl");
-  //   user
-  //     .getBooks()
-  //     .then((result) => {
-  //       console.log("Success", result);
-  //       this.allBooks = result.data.data;
-  //       console.log("all", this.allBooks);
-  //       //this.$refs.books.setAllBookss(result.data.data);
-  //     })
-  //     .catch((error) => {
-  //       var snack: any = {
-  //         text: "error while register, try again!",
-  //         timeout: 3500,
-  //       };
-  //       //  this.$refs.snack.setSnackbar(snack);
-  //     });
-  // };
 }
 </script>
 
