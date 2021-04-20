@@ -1,7 +1,7 @@
 <template>
   <v-form ref="validattion" v-model="valid" :lazy-validation="lazy">
     <br />
-
+    <br />
     <v-text-field
       outlined
       dense
@@ -24,6 +24,7 @@
       @click:append="showPassword = !showPassword"
       required
     ></v-text-field>
+    <br />
     <button
       x-large
       block
@@ -33,26 +34,24 @@
     >
       Login
     </button>
-      <SnackbarNotify ref="snack" />
+    <SnackbarNotify ref="snack" />
   </v-form>
 </template>
 
 <script lang="ts">
-import { Component, Vue , namespace } from "nuxt-property-decorator";
+import { Component, Vue, namespace } from "nuxt-property-decorator";
 import user from "../services/user";
 import SnackbarNotify from "../components/snackbarNotify.vue";
 @Component({
   components: {
-    SnackbarNotify
-  }
- 
+    SnackbarNotify,
+  },
 })
 export default class login extends Vue {
   valid: boolean = true;
   lazy: boolean = false;
   name: string = "";
   showPassword: boolean = false;
-
 
   form: any = {
     email: null,
@@ -85,30 +84,31 @@ export default class login extends Vue {
         .loginUser(data)
         .then((data) => {
           console.log("success data ", data);
-          console.log(" data.data.data[0].user[0]", data.data.data[0].user.firstName);
+          console.log(
+            " data.data.data[0].user[0]",
+            data.data.data[0].user.firstName
+          );
           console.log(" data.data[0]", data.data[0]);
           sessionStorage.setItem("firstName", data.data.data[0].user.firstName);
           sessionStorage.setItem("lastName", data.data.data[0].user.lastName);
           sessionStorage.setItem("emailId", data.data.data[0].user.emailId);
           sessionStorage.setItem("token", data.data.token);
-        
+
           console.log(" login is ");
-          var snack:any = {
-              text: 'login Successful!',
-              timeout :3500
-            }
-           this.$refs.snack.setSnackbar(snack)
+          var snack: any = {
+            text: "login Successful!",
+            timeout: 3500,
+          };
+          this.$refs.snack.setSnackbar(snack);
           this.$router.push("/dashboard");
         })
         .catch((error) => {
-         var snack:any = {
-              text: 'error while login, try again!',
-              timeout :3500
-            }
-           this.$refs.snack.setSnackbar(snack)
-        
+          var snack: any = {
+            text: "error while login, try again!",
+            timeout: 3500,
+          };
+          this.$refs.snack.setSnackbar(snack);
         });
-   
     }
   };
 

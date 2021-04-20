@@ -33,5 +33,15 @@ export default {
             endPoint: '/user-login'
         };
         return apiCall.post(userData);
+    },
+
+
+
+    getBooks() {
+        console.log("books")
+        const noteData = {
+            endPoint: '/books'
+        };
+        return apiCall.get(noteData);
     }
 }

@@ -1,8 +1,8 @@
 
 <template>
   <v-flex>
-    <div id="app" >
-      <v-app id="inspire" >
+    <div id="app">
+      <v-app id="inspire">
         <v-card class="mx-auto overflow-hidden topBar">
           <v-row>
             <v-col>
@@ -26,11 +26,59 @@
             </v-col>
           </v-row>
         </v-card>
+        <v-row>
+          hii
+          <Books ref="books" :allBooks="allBooks" />
+        </v-row>
       </v-app>
     </div>
   </v-flex>
 </template>
 
+<script lang="ts">
+import { Component, Vue } from "nuxt-property-decorator";
+import user from "../services/user";
+import SnackbarNotify from "../components/snackbarNotify.vue";
+import Books from "../components/books.vue";
+@Component({
+  components: {
+    SnackbarNotify,
+    Books,
+  },
+})
+export default class Dashboard extends Vue {
+  allBooks: any;
+
+  beforeMount() {
+    console.log("before mount");
+   // this.displayAllNotes();
+  }
+
+  //  mounted() {
+  //      console.log("before mount")
+  // this.displayAllNotes()
+
+  //  }
+  // public displayAllNotes = () => {
+  //   console.log("disapl");
+  //   user
+  //     .getBooks()
+  //     .then((result) => {
+  //       console.log("Success", result);
+  //       this.allBooks = result.data.data;
+  //       console.log("all", this.allBooks);
+  //       //this.$refs.books.setAllBookss(result.data.data);
+  //     })
+  //     .catch((error) => {
+  //       var snack: any = {
+  //         text: "error while register, try again!",
+  //         timeout: 3500,
+  //       };
+  //       //  this.$refs.snack.setSnackbar(snack);
+  //     });
+  // };
+}
+</script>
 
 
 <style lang="scss">
