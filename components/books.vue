@@ -2,7 +2,11 @@
   <div>
     <v-flex>
       <v-row class="book-size">
+        
+           <v-title class="books-title mb-8">Books</v-title>
+           <!-- <v-title class="books-title-quantity mb-8">({{allBooks.length}} items)</v-title> -->
         <v-layout row wrap class="book-layout">
+          
           <v-flex
             v-for="item in allBooks"
             :key="item.books.title"
