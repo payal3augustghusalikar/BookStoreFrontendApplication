@@ -52,7 +52,9 @@ import SnackbarNotify from "../components/snackbarNotify.vue";
   },
 })
 export default class books extends Vue {
-  @Prop() allBooks!: any;
+  current_page : number =1;
+  itemsPagination: any = this.current_page
+  @Prop() allBooks: any;
 
   beforeMount() {
     console.log("before mount");
@@ -64,6 +66,7 @@ export default class books extends Vue {
       .then((result) => {
         console.log("Success", result.data.data);
         this.allBooks = result.data.data;
+        this.itemsPagination =this.allBooks
         var snack: any = {
           text: "register Successful!",
           timeout: 3500,

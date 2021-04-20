@@ -1,0 +1,74 @@
+@import '../variables.scss';
+
+
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.book-wishlist-card {
+    height: 306px;
+    width: 280px;
+}
+.book-item-image {
+    height: 270px;
+    width: 200px;
+}
+
+
+.book-details .v-list-item {
+    min-height: 25px !important;
+}
+
+.flex.md3 {
+  margin-left: 63px;
+  margin-right: -40px;
+}
+
+
+.add-to-bag {
+    color: $white !important;
+    background-color: #A03037 !important;
+    width: 125px !important;
+    margin-left: 252px; 
+    //margin-left: 222px;
+  }
+
+  .book-route-links {
+    font-size: 17px;
+    margin-top: 120px !important;
+    margin-left: 180px;
+}
+
+.add-bag-book-title {
+    font-size: 25px;
+    font-weight: inherit;
+}
+.add-bag-book-price {
+    font-size: 28px;;
+    font-weight: bold;
+}
+
+.add-bag-book-author {
+    font-size: 15px;
+    color: $darkGrey !important;
+}
+
+.feedback-submit-button {
+    color: white !important;
+    background-color: rgb(52, 112, 224)!important;
+    width: 110px !important;
+    margin-left: 25px;
+  }
+  .feedback-card{
+    width: 650px;
+    height: 150px;
+}
+.cust-feedback .theme--light.v-card {
+    background-color: rgba(235, 230, 230, 0.877);
+}
+.wish-list-btn {
+    color: $whiteColor !important;
+    background-color: #525050 !important;
+    width: 125px !important;
+    margin-left: 32px;
+  }
