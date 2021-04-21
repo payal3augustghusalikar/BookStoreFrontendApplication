@@ -2,7 +2,7 @@
   <div>
     <v-card class="mx-auto overflow-hidden topBar">
       <v-row>
-        <v-app-bar color="#A03037" class="main-bar" fixed elevation="1">
+        <v-app-bar color="#A03037" class="main-bar" fixed  elevation="1">
           <div class="book-icon">
             <v-img
               class="mx-2 book-icon"

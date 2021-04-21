@@ -1,6 +1,6 @@
 
 <template>
-  <v-app>
+  <v-app class="full-layout">
     <v-content>
       <v-row>
         <AppBar ref="appbar" />
@@ -8,14 +8,14 @@
       <v-row>
         <v-layout row wrap class="mt-5">
           <v-flex xs24 md12>
-            <v-row class="mt-10 cart-title">
+            <v-row class="mt-10 book-route-links">
               <v-col class="mt-5">
-                <nuxt-link :to="{ path: 'dashboard' }">Home</nuxt-link>|
+                <nuxt-link :to="{ path: 'dashboard' }">Home</nuxt-link > /
                 <nuxt-link :to="{ path: 'myCart' }">My Cart</nuxt-link>
               </v-col>
             </v-row>
             <v-row>
-              <v-card class="mx-auto cart-card" outlined>
+              <v-card class="mx-auto mycart-card" outlined>
                 <v-layout class="mb-5">
                   <v-flex md2>
                     <!-- <v-img class="cart-image ml-5 mt-2" :src="item.books.image"></v-img> -->
@@ -36,7 +36,7 @@
                     </v-row>
                   </v-flex>
                 </v-layout>
-                <v-divider class="mt-5" />
+               
                 <!-- </v-flex>-->
               </v-card>
             </v-row>
@@ -66,9 +66,8 @@ import AppBar from "../components/appbar.vue";
 export default class MyCart extends Vue {}
 </script>
 
-<style lang="scss">
+<style lang="scss" >
 @import url("../assets/scss/myCart.scss");
 </style>
-
 
 

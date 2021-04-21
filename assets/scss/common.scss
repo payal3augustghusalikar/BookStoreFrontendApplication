@@ -8,3 +8,20 @@
   border-radius: 6px;
   opacity: 1;
   }
+
+
+  @mixin route-links  {
+    font-size: 12px;
+    margin-bottom: 5px !important;
+    margin-left: 100px;
+   
+}
+
+
+@mixin my-order-cart-card {
+  left: -110px;
+  width: 650px;
+  border: 1px solid $faintGrey;
+  border-radius: 1px;
+  background: $faintGrey 0% 0% no-repeat padding-box;
+}

@@ -1,13 +1,17 @@
 <template>
-  <v-app>
-    <v-content>
+  <v-app class="full-layout">
+   
       <v-row>
         <AppBar ref="appbar" />
       </v-row>
+       <v-content class="display-layout">
       <v-col>
-        <v-row class="book-route-links mb-2">
-          <a @click="goToHome">Home</a> |
-          <nuxt-link :to="{ path: 'addToBag', query: {book: item} }">Book</nuxt-link>
+        <v-row class=" book-route-links mb-2">
+          <a @click="goToHome">Home</a> /
+          <nuxt-link :to="{ path: 'addToBag', query: { book: item } }"
+            >Book</nuxt-link
+          >
+        
         </v-row>
         <v-row>
           <v-layout row wrap class="mt-5">
@@ -30,8 +34,9 @@
                 <v-btn
                   class="wish-list-btn white--text mt-5"
                   @click="addToWishlist"
-                   :disabled="isWishlisted"
-                  ><v-icon class="mr-2">mdi-heart</v-icon>{{wishlistText}}</v-btn
+                  :disabled="isWishlisted"
+                  ><v-icon class="mr-2">mdi-heart</v-icon
+                  >{{ wishlistText }}</v-btn
                 >
               </v-row>
             </v-flex>
@@ -49,7 +54,7 @@
                   "Rs. " + item.books.price
                 }}</v-list-item>
               </v-row>
-              <v-divider class="mt-5" />
+              <v-divider class=" divider mt-5" />
               <v-row>
                 <v-list-item class="add-bag-book-description mt-5"
                   >Book Detail</v-list-item
@@ -58,13 +63,15 @@
                   item.books.description
                 }}</v-list-item>
               </v-row>
-              <v-divider class="mt-5" />
+              <v-divider class="divider mt-5" />
               <v-row class="cust-feedback mb-5">
                 <v-list-item class="mt-5">Customer Feedback</v-list-item>
-                <v-card class="mt-5 feedback-card ml-3">
+                <br />
+                <v-card class="mx-auto feedback-card ml-3" outlined>
                   <h5 class="ml-5 mt-2 mb-2">Overall rating</h5>
-                  <br />
+                
                   <v-textarea
+
                     autocomplete="off"
                     placeholder="write Your review"
                     flat
@@ -83,7 +90,7 @@
                   <v-btn class="feedback-submit-button mb-5">Submit</v-btn>
                 </v-col>
               </v-row>
-              <br />
+          
               <br />
             </v-flex>
             <MyCart ref="mycart" v-show="false" />
@@ -108,17 +115,16 @@ import Snackbar from "../components/snackbarNotify.vue";
   },
 })
 export default class AddToBag extends Vue {
- 
   private item: any = {};
   private book: any;
   private timeout: number = 3500;
   private addedToCartItems: any = [];
   private addedToWishlistItems: any = [];
- private wishlistText: string= "WISHLST";
- private  addToBagText: string= "ADD TO BAG";
-   private isWishlisted: Boolean = false;
+  private wishlistText: string = "WISHLST";
+  private addToBagText: string = "ADD TO BAG";
+  private isWishlisted: Boolean = false;
 
- private isAddedToCart: Boolean = false;
+  private isAddedToCart: Boolean = false;
   beforeMount() {
     console.log("before mount");
     this.book;
@@ -149,8 +155,8 @@ export default class AddToBag extends Vue {
       };
       child.setSnackbar(snackbarData);
       setTimeout(() => {
-          this.isAddedToCart = true;
-        this.addToBagText = "ADDED TO BAG"
+        this.isAddedToCart = true;
+        this.addToBagText = "ADDED TO BAG";
       }, 1000);
     } catch (error) {
       const snackbarData = {
@@ -163,28 +169,25 @@ export default class AddToBag extends Vue {
 
   addToWishlist() {
     try {
+      if (this.isWishlisted == true) {
+        this.wishlistText = "WISHLIST";
+        // this.addedToWishlistItems.pull(this.item);
+      } else {
+        this.addedToWishlistItems.push(this.item);
+        // const appBar: any = this.$refs.appBar;
+        //appBar.setWishlistItems(this.wishlist);
 
- if(this.isWishlisted==true) {
-  this.wishlistText = "WISHLIST";
-   // this.addedToWishlistItems.pull(this.item);
- } else {
- this.addedToWishlistItems.push(this.item);
-      // const appBar: any = this.$refs.appBar;
-      //appBar.setWishlistItems(this.wishlist);
-
-      console.log("this.addedToWishlistItems", this.addedToWishlistItems);
-      const snackbarData = {
-        text: "added to wishlist",
-        timeout: this.timeout,
-      };
-      this.$refs.snack.setSnackbar(snackbarData);
-      setTimeout(() => {
+        console.log("this.addedToWishlistItems", this.addedToWishlistItems);
+        const snackbarData = {
+          text: "added to wishlist",
+          timeout: this.timeout,
+        };
+        this.$refs.snack.setSnackbar(snackbarData);
+        setTimeout(() => {
           this.isWishlisted = true;
-         this.wishlistText = "WISHLISTED";
-      }, 1000);
- }
-      
-     
+          this.wishlistText = "WISHLISTED";
+        }, 1000);
+      }
     } catch (error) {
       const snackbarData = {
         text: error,
