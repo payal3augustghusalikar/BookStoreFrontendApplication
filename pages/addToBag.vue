@@ -7,7 +7,7 @@
       <v-col>
         <v-row class="book-route-links mb-2">
           <a @click="goToHome">Home</a> |
-          <nuxt-link :to="{ path: 'addToBag' }">Book</nuxt-link>
+          <nuxt-link :to="{ path: 'addToBag', query: {book: item} }">Book</nuxt-link>
         </v-row>
         <v-row>
           <v-layout row wrap class="mt-5">
@@ -25,13 +25,13 @@
                   class="add-to-bag white--text mt-5"
                   @click="addToCart"
                   :disabled="isAddedToCart"
-                  >Add to bag</v-btn
+                  >{{addToBagText}}</v-btn
                 >
                 <v-btn
                   class="wish-list-btn white--text mt-5"
                   @click="addToWishlist"
-                  :disabled="isWishlisted"
-                  ><v-icon class="mr-2">mdi-heart</v-icon>wishlist</v-btn
+                   :disabled="isWishlisted"
+                  ><v-icon class="mr-2">mdi-heart</v-icon>{{wishlistText}}</v-btn
                 >
               </v-row>
             </v-flex>
@@ -77,7 +77,6 @@
                   />
                 </v-card>
               </v-row>
-
               <v-row>
                 <v-col cols="12" md="8"></v-col>
                 <v-col cols="12" md="4">
@@ -87,7 +86,7 @@
               <br />
               <br />
             </v-flex>
-          <MyCart ref="mycart" v-show="false"/> 
+            <MyCart ref="mycart" v-show="false" />
           </v-layout>
         </v-row>
       </v-col>
@@ -104,54 +103,27 @@ import Snackbar from "../components/snackbarNotify.vue";
 @Component({
   components: {
     AppBar,
-  MyCart,
+    MyCart,
     Snackbar,
   },
 })
-
-
-
-
-
 export default class AddToBag extends Vue {
-
-//  watch: {
-//     // Whenever the movie prop changes, fetch new data
-//     movie : any {
-//       handler: 'fetchData'
-//     },
-//     // Whenever the actor changes, we'll call the same method
-//     actor: {
-//       handler: 'fetchData',
-//     }
-//   }
-
-
-  //  @Prop() book: any;
+ 
   private item: any = {};
   private book: any;
   private timeout: number = 3500;
   private addedToCartItems: any = [];
   private addedToWishlistItems: any = [];
- 
+ private wishlistText: string= "WISHLST";
+ private  addToBagText: string= "ADD TO BAG";
+   private isWishlisted: Boolean = false;
 
-  // Fetch data about the movie
-  fetchData = () => {
-    // fetch(`/${this.movie}/${this.actor}`).then((data) => {
-    //   this.movieData = data;
-    // });
-  };
-
+ private isAddedToCart: Boolean = false;
   beforeMount() {
     console.log("before mount");
     this.book;
-    // console.log("item", this.book)
-    //  console.log('routr',this.$route.book)
-    // console.log(this.$route)
     console.log(this.$route.query.book);
     this.item = this.$route.query.book;
-    //   console.log(this.$nuxt._route.book)
-    //   console.log(this.$nuxt._route.book)
   }
   mounted() {
     console.log(" mount");
@@ -166,22 +138,19 @@ export default class AddToBag extends Vue {
   addToCart() {
     const child: any = this.$refs.snack;
     try {
-      console.log("addto cart");
-      console.log();
       this.addedToCartItems.push(this.item);
       this.$refs.appbar.setAddedToCartItems(this.addedToCartItems);
       // const appBar: any = this.$refs.appBar;
       // appBar.setBook(this.items);
-
       console.log("this.aaddedToCartItems", this.addedToCartItems.length);
-
       const snackbarData = {
         text: "Book added to cart",
         timeout: this.timeout,
       };
       child.setSnackbar(snackbarData);
       setTimeout(() => {
-        //  this.isAddedToCart = true;
+          this.isAddedToCart = true;
+        this.addToBagText = "ADDED TO BAG"
       }, 1000);
     } catch (error) {
       const snackbarData = {
@@ -194,7 +163,12 @@ export default class AddToBag extends Vue {
 
   addToWishlist() {
     try {
-      this.addedToWishlistItems.push(this.item);
+
+ if(this.isWishlisted==true) {
+  this.wishlistText = "WISHLIST";
+   // this.addedToWishlistItems.pull(this.item);
+ } else {
+ this.addedToWishlistItems.push(this.item);
       // const appBar: any = this.$refs.appBar;
       //appBar.setWishlistItems(this.wishlist);
 
@@ -205,8 +179,12 @@ export default class AddToBag extends Vue {
       };
       this.$refs.snack.setSnackbar(snackbarData);
       setTimeout(() => {
-        //  this.isWishlisted = true;
+          this.isWishlisted = true;
+         this.wishlistText = "WISHLISTED";
       }, 1000);
+ }
+      
+     
     } catch (error) {
       const snackbarData = {
         text: error,

@@ -26,25 +26,22 @@
               <v-icon class="white--text mr-8 account-icon"
                 >mdi-account-outline</v-icon
               >
-
               <p id="bottom-name">Payal</p>
             </div>
           </ul>
-
-          <ul>
-             <nuxt-link
-        :to="{ path: 'myCart', query: {books: items, wishlistBooks: wishlist, orderedBooks: orderList }}"
+ <nuxt-link
+        :to="{ path: 'myCart'}"
       >
+          <ul> 
             <v-img
               class="mx-2 supermarket-icon white--text headline"
               contain
               :src="require('@/assets/scss/images/supermarket.svg')"
             > {{cartItemCounter}}</v-img>
-
             <p id="bottom-name-cart">cart</p> 
-             </nuxt-link>
           </ul>
-            <v-badge id="counter" color="#A03037" :content.sync="this.cartItemCounter"></v-badge>
+           </nuxt-link>
+            <v-badge id="counter" color="#A03037" :content="2"></v-badge>
         </v-app-bar>
       </v-row>
     </v-card>
@@ -57,7 +54,6 @@ import Vue from "vue";
 export default class appbar extends Vue {
   @Prop() private cartItemCounter!: any;
     // cartItemCounter: number=0;
-
 
 beforeMount() {
   console.log("cartItemCounter in mount", this.cartItemCounter)

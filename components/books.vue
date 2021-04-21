@@ -2,11 +2,9 @@
   <div>
     <v-flex>
       <v-row class="book-size">
-        
            <v-title class="books-title mb-8">Books</v-title>
            <!-- <v-title class="books-title-quantity mb-8">({{allBooks.length}} items)</v-title> -->
         <v-layout row wrap class="book-layout">
-          
           <v-flex
             v-for="item in allBooks"
             :key="item.books.title"
@@ -18,6 +16,7 @@
             :to="{ path: 'addToBag', query: {book: item}}"
           >
             <v-card class="mx-auto b-card" outlined>
+              
               <v-row class="book-image">
                 <v-img
                   class="mx-auto mt-4 mb-4"
@@ -28,6 +27,7 @@
                 <v-list-item class="book-title">{{
                   item.books.title
                 }}</v-list-item>
+                
                 <v-list-item class="book-author">{{
                   item.books.author
                 }}</v-list-item>
