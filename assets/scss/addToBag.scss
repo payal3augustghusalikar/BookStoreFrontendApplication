@@ -6,12 +6,12 @@
 }
 
 .book-wishlist-card {
-    height: 306px;
-    width: 280px;
+    height: 455px;
+    width: 324px;
 }
 .book-item-image {
-    height: 270px;
-    width: 200px;
+    height: 420px;
+    width: 290px;
 }
 
 
@@ -28,8 +28,8 @@
 .add-to-bag {
     color: $white !important;
     background-color: #A03037 !important;
-    width: 125px !important;
-    margin-left: 252px; 
+    width: 145px !important;
+    margin-left: 278px; 
     //margin-left: 222px;
   }
 
@@ -57,11 +57,11 @@
     color: white !important;
     background-color: rgb(52, 112, 224)!important;
     width: 110px !important;
-    margin-left: 25px;
+    margin-left: 37px;
   }
   .feedback-card{
-    width: 650px;
-    height: 150px;
+    width: 730px;
+    height: 140px;
 }
 .cust-feedback .theme--light.v-card {
     background-color: rgba(235, 230, 230, 0.877);
@@ -69,6 +69,10 @@
 .wish-list-btn {
     color: $whiteColor !important;
     background-color: #525050 !important;
-    width: 125px !important;
-    margin-left: 32px;
+    width: 145px !important;
+    margin-left: 31px;
+  }
+
+  .description {
+      margin-right: 60px;
   }

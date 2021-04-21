@@ -14,6 +14,9 @@
             xs2
             class="mb-5 mr--25 mt-2"
           >
+           <nuxt-link
+            :to="{ path: 'addToBag', query: {book: item}}"
+          >
             <v-card class="mx-auto b-card" outlined>
               <v-row class="book-image">
                 <v-img
@@ -33,6 +36,7 @@
                 }}</v-list-item>
               </v-row>
             </v-card>
+              </nuxt-link>
           </v-flex>
         </v-layout>
       </v-row>
@@ -83,6 +87,6 @@ export default class books extends Vue {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import url("../assets/scss/books.scss");
 </style>

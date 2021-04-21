@@ -1,9 +1,9 @@
 @import './common.scss';
 @import '../variables.scss';
 .supermarket-icon {
-    margin-left: 40px;
+    margin-left: 43px;
     margin-top: -10px;
-    min-height:19px;
+    min-height:13px;
     min-width:19px;
 }
 .title {
@@ -48,9 +48,11 @@
 #bottom-name-cart {
     font-size: 11px;
    margin-bottom: -21px;
- 
    color:white;
    padding-left: 10px;
 }
 
-
+.counter {
+    margin-left: -30px;
+    margin-right: -30px;
+}

@@ -21,28 +21,30 @@
               solo
             ></v-text-field>
           </div>
-            <ul>
+          <ul>
             <div class="avatar">
-            
               <v-icon class="white--text mr-8 account-icon"
                 >mdi-account-outline</v-icon
               >
-            
-             
-                  <p id="bottom-name"> Payal </p>
+
+              <p id="bottom-name">Payal</p>
             </div>
-            </ul>
-         
+          </ul>
+
           <ul>
+             <nuxt-link
+        :to="{ path: 'myCart', query: {books: items, wishlistBooks: wishlist, orderedBooks: orderList }}"
+      >
             <v-img
               class="mx-2 supermarket-icon white--text headline"
-            
               contain
               :src="require('@/assets/scss/images/supermarket.svg')"
-            ></v-img>
-       
-                  <p id="bottom-name-cart">  Cart</p>
+            > {{cartItemCounter}}</v-img>
+
+            <p id="bottom-name-cart">cart</p> 
+             </nuxt-link>
           </ul>
+            <v-badge id="counter" color="#A03037" :content.sync="this.cartItemCounter"></v-badge>
         </v-app-bar>
       </v-row>
     </v-card>
@@ -51,8 +53,24 @@
 
 <script lang="ts">
 import Vue from "vue";
+ import { Prop } from "vue-property-decorator";
+export default class appbar extends Vue {
+  @Prop() private cartItemCounter!: any;
+    // cartItemCounter: number=0;
 
-export default Vue.extend({});
+
+beforeMount() {
+  console.log("cartItemCounter in mount", this.cartItemCounter)
+  // this.cartItemCounter = addedToCartItems.length;
+}
+
+  setAddedToCartItems(addedToCartItems: any) {
+   // if (addedToCartItems != undefined) {
+    this.cartItemCounter =addedToCartItems.length;
+        console.log("cartItemCounter", this.cartItemCounter)
+   // }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
