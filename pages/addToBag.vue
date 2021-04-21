@@ -96,8 +96,11 @@
             <MyCart ref="mycart" v-show="false" />
           </v-layout>
         </v-row>
+      
       </v-col>
+      
       <Snackbar ref="snack" />
+      <MyCart ref="myCart" :addedToCartItems="newItem" />
     </v-content>
   </v-app>
 </template>
@@ -107,6 +110,7 @@ import { Prop, Vue, Component, Watch } from "vue-property-decorator";
 import AppBar from "../components/appbar.vue";
 import MyCart from "./myCart.vue";
 import Snackbar from "../components/snackbarNotify.vue";
+
 @Component({
   components: {
     AppBar,
@@ -123,18 +127,19 @@ export default class AddToBag extends Vue {
   private wishlistText: string = "WISHLST";
   private addToBagText: string = "ADD TO BAG";
   private isWishlisted: Boolean = false;
+  newItem : any ;
 
   private isAddedToCart: Boolean = false;
   beforeMount() {
-    console.log("before mount");
+   // console.log("before mount");
     this.book;
-    console.log(this.$route.query.book);
+   // console.log(this.$route.query.book);
     this.item = this.$route.query.book;
   }
   mounted() {
-    console.log(" mount");
+  //  console.log(" mount");
     this.book;
-    console.log("item", this.book);
+   // console.log("item", this.book);
   }
 
   goToHome() {
@@ -146,9 +151,10 @@ export default class AddToBag extends Vue {
     try {
       this.addedToCartItems.push(this.item);
       this.$refs.appbar.setAddedToCartItems(this.addedToCartItems);
+      this.$refs.myCart.setAddedToCartItems(this.addedToCartItems)
       // const appBar: any = this.$refs.appBar;
       // appBar.setBook(this.items);
-      console.log("this.aaddedToCartItems", this.addedToCartItems.length);
+     // console.log("this.aaddedToCartItems", this.addedToCartItems.length);
       const snackbarData = {
         text: "Book added to cart",
         timeout: this.timeout,
@@ -158,6 +164,10 @@ export default class AddToBag extends Vue {
         this.isAddedToCart = true;
         this.addToBagText = "ADDED TO BAG";
       }, 1000);
+
+
+      this.newItem=this.item 
+      console.log("this.neitem", this.newItem)
     } catch (error) {
       const snackbarData = {
         text: error,

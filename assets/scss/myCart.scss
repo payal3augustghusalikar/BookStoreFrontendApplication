@@ -25,17 +25,33 @@ opacity: 1;
 
 }
 .book-route-links {
-   @include route-links; 
+    font-size: 13px;
+    margin-bottom: 5px !important;
+    margin-left: 100px;
+   
+
 }
-
-
-
-
+#title {
+    font-size: 15px;
+   margin-top:  -10px;
+   margin-left: 8px;
+}
+#author {
+    font-size: 12px;
+    color: gray !important;
+}
 
 .cart-image {
     height: 120px;
     width: 90px;
 }
+
+
+
+
+
+
+
 
 .v-list-item {
     min-height: 25px !important;
@@ -61,7 +77,11 @@ opacity: 1;
     justify-content: flex-end;
 }
 .place-order-btn {
-  @include place-order-btn-style;
+
+    color: white !important;
+    background-color: rgb(52, 112, 224)!important;
+    width: 110px !important;
+    margin-left: 10px !important;
 }
 .orderConfirmImage {
   height: 120px;
