@@ -124,7 +124,7 @@ export default class login extends Vue {
         .then((result) => {
           console.log("Success", result);
           this.user = `${data.firstName} ${data.lastName}`;
-          this.$router.push("/dashboard");
+       //   this.$router.push("/dashboard");
           var snack: any = {
             text: "register Successful!",
             timeout: 3500,

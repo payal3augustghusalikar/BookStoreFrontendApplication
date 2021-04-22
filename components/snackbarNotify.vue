@@ -50,6 +50,7 @@ export default class SnackbarNotify extends Vue {
   
 
   public setSnackbar = (snackbarData: any) => {
+    console.log("inside set")
     this.text = snackbarData.text;
     this.timeout = snackbarData.timeout;
      this.showSnackbar = true;

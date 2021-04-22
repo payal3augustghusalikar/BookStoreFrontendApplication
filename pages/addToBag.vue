@@ -1,17 +1,15 @@
 <template>
   <v-app class="full-layout">
-   
-      <v-row>
-        <AppBar ref="appbar" />
-      </v-row>
-       <v-content class="display-layout">
+    <v-row>
+      <AppBar ref="appbar" />
+    </v-row>
+    <v-content class="display-layout">
       <v-col>
-        <v-row class=" book-route-links mb-2">
+        <v-row class="book-route-links mb-2">
           <a @click="goToHome">Home</a> /
           <nuxt-link :to="{ path: 'addToBag', query: { book: item } }"
             >Book</nuxt-link
           >
-        
         </v-row>
         <v-row>
           <v-layout row wrap class="mt-5">
@@ -27,9 +25,9 @@
               <v-row class="d-flex">
                 <v-btn
                   class="add-to-bag white--text mt-5"
-                  @click="addToCart"
+                  @click="addToCart(item.books.bookId)"
                   :disabled="isAddedToCart"
-                  >{{addToBagText}}</v-btn
+                  >{{ addToBagText }}</v-btn
                 >
                 <v-btn
                   class="wish-list-btn white--text mt-5"
@@ -54,7 +52,7 @@
                   "Rs. " + item.books.price
                 }}</v-list-item>
               </v-row>
-              <v-divider class=" divider mt-5" />
+              <v-divider class="divider mt-5" />
               <v-row>
                 <v-list-item class="add-bag-book-description mt-5"
                   >Book Detail</v-list-item
@@ -69,9 +67,8 @@
                 <br />
                 <v-card class="mx-auto feedback-card ml-3" outlined>
                   <h5 class="ml-5 mt-2 mb-2">Overall rating</h5>
-                
-                  <v-textarea
 
+                  <v-textarea
                     autocomplete="off"
                     placeholder="write Your review"
                     flat
@@ -90,15 +87,14 @@
                   <v-btn class="feedback-submit-button mb-5">Submit</v-btn>
                 </v-col>
               </v-row>
-          
+
               <br />
             </v-flex>
             <MyCart ref="mycart" v-show="false" />
           </v-layout>
         </v-row>
-      
       </v-col>
-      
+
       <Snackbar ref="snack" />
       <MyCart ref="myCart" :addedToCartItems="newItem" />
     </v-content>
@@ -110,7 +106,7 @@ import { Prop, Vue, Component, Watch } from "vue-property-decorator";
 import AppBar from "../components/appbar.vue";
 import MyCart from "./myCart.vue";
 import Snackbar from "../components/snackbarNotify.vue";
-
+import user from "../services/user";
 @Component({
   components: {
     AppBar,
@@ -127,53 +123,74 @@ export default class AddToBag extends Vue {
   private wishlistText: string = "WISHLST";
   private addToBagText: string = "ADD TO BAG";
   private isWishlisted: Boolean = false;
-  newItem : any ;
+  newItem: any;
 
   private isAddedToCart: Boolean = false;
   beforeMount() {
-   // console.log("before mount");
+    
     this.book;
-   // console.log(this.$route.query.book);
+  
     this.item = this.$route.query.book;
   }
   mounted() {
-  //  console.log(" mount");
+   
     this.book;
-   // console.log("item", this.book);
+   
   }
 
   goToHome() {
     this.$router.push("/dashboard");
   }
+  bookInput: any = {};
 
-  addToCart() {
+  addToCart(id: any) {
+    console.log("adding to cart", id);
     const child: any = this.$refs.snack;
     try {
-      this.addedToCartItems.push(this.item);
-      this.$refs.appbar.setAddedToCartItems(this.addedToCartItems);
-      this.$refs.myCart.setAddedToCartItems(this.addedToCartItems)
-      // const appBar: any = this.$refs.appBar;
-      // appBar.setBook(this.items);
-     // console.log("this.aaddedToCartItems", this.addedToCartItems.length);
-      const snackbarData = {
-        text: "Book added to cart",
-        timeout: this.timeout,
+      this.bookInput = {
+        isAddedToBag: true,
       };
-      child.setSnackbar(snackbarData);
-      setTimeout(() => {
-        this.isAddedToCart = true;
-        this.addToBagText = "ADDED TO BAG";
-      }, 1000);
+  
+      console.log(
+        "noteData, id",
+        id,
+        (this.bookInput = {
+          isAddedToBag: true,
+        })
+      );
+      return user
+        .addToBag(this.bookInput, id)
+        .then((result) => {
+          result = result.data.data;
+          console.log("Moved To bag", result);
+          const snackbarData = {
+            text: "Book added to cart",
+            timeout: this.timeout,
+          };
 
+         // if (result == undefined) {
+            setTimeout(() => {
+              this.isAddedToCart = true;
+              this.addToBagText = "ADDED TO BAG";
+            }, 1000);
+            this.$refs.snack.setSnackbar(snackbarData);
+          //}
+        })
+        .catch((error) => {
+          const snackbarData = {
+            text: error,
+            timeout: this.timeout,
+          };
+          this.$refs.snack.setSnackbar(snackbarData);
+        });
 
-      this.newItem=this.item 
-      console.log("this.neitem", this.newItem)
+    
     } catch (error) {
       const snackbarData = {
         text: error,
         timeout: this.timeout,
       };
-      child.setSnackbar(snackbarData);
+      this.$refs.snack.setSnackbar(snackbarData);
     }
   }
 
@@ -181,12 +198,10 @@ export default class AddToBag extends Vue {
     try {
       if (this.isWishlisted == true) {
         this.wishlistText = "WISHLIST";
-        // this.addedToWishlistItems.pull(this.item);
+    
       } else {
         this.addedToWishlistItems.push(this.item);
-        // const appBar: any = this.$refs.appBar;
-        //appBar.setWishlistItems(this.wishlist);
-
+      
         console.log("this.addedToWishlistItems", this.addedToWishlistItems);
         const snackbarData = {
           text: "added to wishlist",

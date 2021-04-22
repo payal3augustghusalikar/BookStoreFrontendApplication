@@ -43,5 +43,16 @@ export default {
             endPoint: '/books'
         };
         return apiCall.get(noteData);
-    }
+    },
+
+
+    addToBag(bookInput:any, bookId:any) {
+        console.log('noteInput', bookInput, bookId);
+        const noteData = {
+            userInput: bookInput,
+            endPoint: '/book/addtobag/' + bookId
+        };
+        return apiCall.put(noteData);
+    },
 }
+
