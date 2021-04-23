@@ -16,7 +16,7 @@
               </v-row>
               <v-row class="mt-5 ml-12" align="center" justify="center">
                   <pre>      hurray!!! your order is confirmed
-    the order id is #12345 save the order id for
+    the order id is #094523251 save the order id for
             further communication..</pre>
               </v-row>
               <v-row class="mt-15 ml-10" align="center" justify="center"> 
@@ -49,7 +49,7 @@
             
 <script lang="ts">
 import { Prop, Vue, Component } from "vue-property-decorator";
-import AppBar from "../components/AppBar.vue";
+import AppBar from "../components/appbar.vue";
 @Component({
   components: {
     AppBar
@@ -62,36 +62,36 @@ export default class ConfirmOrder extends Vue {
    // private orderConfirmImage: any = require('../assets/images/orderConfirm.png');
 
     beforeMount(){
-        if(this.$route.query.books != undefined)
-            this.items = this.$route.query.books;
-        else
-            this.items = [];
+        // if(this.$route.query.books != undefined)
+        //     this.items = this.$route.query.books;
+        // else
+        //     this.items = [];
 
-        if(this.$route.query.orderedBooks != undefined)
-            this.orderList = this.$route.query.orderedBooks
-        else
-            this.orderList = [];
+        // if(this.$route.query.orderedBooks != undefined)
+        //     this.orderList = this.$route.query.orderedBooks
+        // else
+        //     this.orderList = [];
 
-        if(this.$route.query.wishlistBooks != undefined)
-            this.wishlist = this.$route.query.wishlistBooks
-        else
-            this.wishlist = [];
+        // if(this.$route.query.wishlistBooks != undefined)
+        //     this.wishlist = this.$route.query.wishlistBooks
+        // else
+        //     this.wishlist = [];
     }
 
     mounted(){
       if(this.wishlist !=undefined){
       const appBar: any = this.$refs.appBar;
-    //  appBar.setWishlistItems(this.wishlist);
+ 
     }
 
     if(this.items !=undefined){
       const appBar: any = this.$refs.appBar;
-    //  appBar.setBook(this.items);
+   
     }
 
     if(this.orderList !=undefined){
       const appBar: any = this.$refs.appBar;
-     // appBar.setOrderedBooks(this.orderList);
+     
     }
   }
 
@@ -100,3 +100,8 @@ export default class ConfirmOrder extends Vue {
   }
 }
 </script>
+
+
+<style lang="scss">
+@import url("../assets/scss/confirmOrder.scss");
+</style>

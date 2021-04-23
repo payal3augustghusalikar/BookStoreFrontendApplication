@@ -163,18 +163,7 @@ export default class myCart extends Vue {
     // },
   ];
 
-  //   beforeMount() {
-  //     console.log("before mount");
-  //     this.displayAllBooks();
-  //   }
-
-  // Mounted() {
-  //     console.log("before mount");
-  //     this.displayAllBooks();
-  //   }
-  // created () {
-
-  // }
+  
 
   incrementCounter = (item: any) => {
     item.counter = item.counter + 1;
@@ -183,51 +172,12 @@ export default class myCart extends Vue {
     item.counter = item.counter - 1;
     if (item.counter <= 0) item.counter = 1;
   };
-  // allCartBooks2 :any
-  //   // public displayAllBooks = () => {
-  //   //   user
-  //   //     .getBooks()
-  //   //     .then((result) => {
-
-  //   //     //  this.allCartBooks= result.data.data.filter(
-  //   //         (book) => book.books.isAddedToBag == true
-  //   //       );
-  //   //       console.log("Success1", this.allCartBooks);
-
-  //   //     })
-  //   //     .catch((error) => {
-  //   //       var snack: any = {
-  //   //         text: "error , try again!",
-  //   //         timeout: 3500,
-  //   //       };
-
-  //   //       this.$refs.snack.setSnackbar(snack);
-  //   //     });
-  //   // };
-  //  //@Prop() private allCartBooks!: any
-  //  //= this.allCartBooks2
-  //   mounted() {
-
-  //     //this.displayAllBooks();
-  //   }
-
-  //   setAddedToCartItems(cartItems: any) {
-
-  //    // this.addedCartItems = cartItems;
-
-  //   }
-
+  
   placeOrder = (item: any) => {
-    // this.isOrderPlaced = true;
-
-    // item.books.bookCount = this.counter_value;
-
-    // const addressdetails: any = this.$refs.addressdetails;
-    // addressdetails.showDetails();
-
+  
 this.isOrderPlaced = true;
     const orderSummary: any = this.$refs.orderSummary;
-    item.books.bookCount = this.counter_value;
+  //  item.books.bookCount = this.counter_value;
     orderSummary.setBook(item);
     const addressdetails: any = this.$refs.addressdetails;
     addressdetails.showDetails();
@@ -251,11 +201,6 @@ this.isOrderPlaced = true;
           (book) => book.books.isAddedToBag == true
         );
 
-        //   this.itemsPagination = this.allBooks;
-        // var snack: any = {
-        //   text: "register Successful!",
-        //   timeout: 3500,
-        // };
       })
       .catch((error) => {
         var snack: any = {
@@ -277,11 +222,7 @@ checkOut(book: any) {
          console.log("ordrelist1", this.orderList)
     this.$router.push({
         path: "/confirmOrder",
-     //   query: {
-         // books: filteredItems,
-       //   wishlistBooks: this.wishlist,
-      //    orderedBooks: this.orderList
-      //  }
+     
       });
     }
   }

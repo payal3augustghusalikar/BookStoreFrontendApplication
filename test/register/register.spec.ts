@@ -15,88 +15,7 @@ import login from '../../pages/login.vue';
 import signUp from '../../pages/signUp.vue';
 import Vuetify from 'vuetify';
 //import VueMaterial from 'vue-material';
-//import userData from '@/test/register/register-data.json' ;
-
-
-
-const user: any = {
-    "registerUserProperData": {
-        "firstName": "Payal",
-        "lastName": "Payal",
-        "emailId": "ghusalikarpayal58@gmail.com",
-        "password": "AAAAAAA",
-        "confirmPassword": "AAAAAAA"
-    },
-
-    "userWithEmptyFirstName": {
-        "firstName": "",
-        "lastName": "Payal",
-        "emailId": "ghusalikarapayal2@gmail.com",
-        "password": "AAAAAAA",
-        "confirmPassword": "AAAAAAA"
-    },
-
-    "userWithEmptyLastName": {
-        "firstName": "Payal",
-        "lastName": "",
-        "emailId": "ghusalikarapayal2@gmail.com",
-        "password": "AAAAAAA",
-        "confirmPassword": "AAAAAAA"
-    },
-    "userWithImproperEmail": {
-        "firstName": "Payal",
-        "lastName": "Payal",
-        "emailId": "ghusalikarapayal2gmail.com",
-        "password": "AAAAAAA",
-        "confirmPassword": "AAAAAAA"
-    },
-
-    "emailWithoutAtsigninEmail": {
-        "emailId": "ghusalikarapayal2gmail.com",
-
-    },
-    "properEmail":
-    {
-        "emailId": "ghusalikarapayal2@gmail.com",
-
-    },
-    "emailWithoutcom": {
-        "emailId": "ghusalikarapayal2gmail",
-
-    },
-    "havingSymbol" : {
-        "firstName": "P%$###$$$#$$",
-    },
-    "properFirstName":
-    {
-        "firstName": "Payal"
-    },
-    "userWithEmptyEmail": {
-        "firstName": "Payal",
-        "lastName": "Payal",
-        "emailId": "",
-        "password": "AAAAAAA",
-        "confirmPassword": "AAAAAAA"
-    },
-    "userWithThan3CharInName": {
-        "firstName": "Pa",
-        "lastName": "Payal",
-        "emailId": "ghusalikarapayal2@gmail.com",
-        "password": "AAAAAAA",
-        "confirmPassword": "AAAAAAA"
-    },
-    "PasswordAndConfirmPasswordNotSame": {
-        "firstName": "Pay",
-        "lastName": "Payal",
-        "emailId": "ghusalikarapayal5555@gmail.com",
-        "password": "AAAAAAA",
-        "confirmPassword": ""
-    },
-    "passwordWithLessThan8char" : {
-        "password": "ppppppp"
-    },
-    "properPassword" : { "password" : "Payaljkkkjjj58544"}
-}
+import userData from './register-data.json' ;
 
 
 
@@ -107,135 +26,135 @@ describe('signUp.vue', () => {
         localVue.use(Vuetify);
         //  localVue.use(VueMaterial);
         wrapper = shallowMount(signUp, localVue);
-        console.log('localVue', wrapper);
+       
     })
 
     it('inGivenEmail_whenImproper_shouldEvaluatefalse', () => {
-        wrapper.vm.email = user.userWithImproperEmail.emailId;
+        wrapper.vm.email = userData.user.userWithImproperEmail.emailId;
 
-        expect((wrapper.vm).email).toBe(user.userWithImproperEmail.emailId)
+        expect((wrapper.vm).email).toBe(userData.user.userWithImproperEmail.emailId)
     });
 
     it('inGivenEmail_whenEmpty_shouldEvaluatefalse', () => {
-        wrapper.vm.email = user.userWithEmptyEmail.emailId;
+        wrapper.vm.email = userData.user.userWithEmptyEmail.emailId;
 
-        expect((wrapper.vm).email).toBe(user.userWithEmptyEmail.emailId)
+        expect((wrapper.vm).email).toBe(userData.user.userWithEmptyEmail.emailId)
     });
 
     it('inGivenEmail_whenEmpty_shouldEvaluatefalse', () => {
-        wrapper.vm.email = user.emailWithoutAtsigninEmail.emailId;
+        wrapper.vm.email = userData.user.emailWithoutAtsigninEmail.emailId;
 
-        expect((wrapper.vm).email).toBe(user.emailWithoutAtsigninEmail.emailId)
+        expect((wrapper.vm).email).toBe(userData.user.emailWithoutAtsigninEmail.emailId)
     });
     it('inGivenEmail_whenEmpty_shouldEvaluatefalse', () => {
-        wrapper.vm.email = user.emailWithoutcom.emailId;
+        wrapper.vm.email = userData.user.emailWithoutcom.emailId;
 
-        expect((wrapper.vm).email).toBe(user.emailWithoutcom.emailId)
+        expect((wrapper.vm).email).toBe(userData.user.emailWithoutcom.emailId)
     });
 
     it('inGivenEmail_whenProper_shouldEvaluatetrue', () => {
-        wrapper.vm.email = user.properEmail.emailId;
-        expect((wrapper.vm).email).toBe(user.properEmail.emailId)
+        wrapper.vm.email = userData.user.properEmail.emailId;
+        expect((wrapper.vm).email).toBe(userData.user.properEmail.emailId)
     });
 
 
 
     it('inGivenfirstName_whenEmptyFirst_shouldEvaluatefalse', () => {
-        wrapper.vm.firstName = user.userWithEmptyFirstName.firstName;
+        wrapper.vm.firstName = userData.user.userWithEmptyFirstName.firstName;
 
-        expect((wrapper.vm).firstName).toBe(user.userWithEmptyFirstName.firstName)
+        expect((wrapper.vm).firstName).toBe(userData.user.userWithEmptyFirstName.firstName)
     });
 
 
     it('inGivenfirstName_improperFirstName_shouldEvaluatefalse', () => {
-        wrapper.vm.firstName = user.userWithThan3CharInName.firstName;
+        wrapper.vm.firstName = userData.user.userWithThan3CharInName.firstName;
 
-        expect((wrapper.vm).firstName).toBe(user.userWithThan3CharInName.firstName)
+        expect((wrapper.vm).firstName).toBe(userData.user.userWithThan3CharInName.firstName)
     });
     it('inGivenfirstName_improperFirstName_shouldEvaluatefalse', () => {
-        wrapper.vm.firstName = user.userWithThan3CharInName.firstName;
+        wrapper.vm.firstName = userData.user.userWithThan3CharInName.firstName;
 
-        expect((wrapper.vm).firstName).toBe(user.userWithThan3CharInName.firstName)
+        expect((wrapper.vm).firstName).toBe(userData.user.userWithThan3CharInName.firstName)
     });
 
 
     it('inGivenfirstName_improperFirstNameandhavingSymbol_shouldEvaluatefalse', () => {
-        wrapper.vm.firstName = user.userWithThan3CharInName.firstName;
+        wrapper.vm.firstName = userData.user.userWithThan3CharInName.firstName;
 
-        expect((wrapper.vm).firstName).toBe(user.userWithThan3CharInName.firstName)
+        expect((wrapper.vm).firstName).toBe(userData.user.userWithThan3CharInName.firstName)
     });
 
     
     it('inGivenfirstName_properFirstNameandhavingSymbol_shouldEvaluateTrue', () => {
-        wrapper.vm.firstName = user.properFirstName.firstName;
+        wrapper.vm.firstName = userData.user.properFirstName.firstName;
 
-        expect((wrapper.vm).firstName).toBe(user.properFirstName.firstName)
+        expect((wrapper.vm).firstName).toBe(userData.user.properFirstName.firstName)
     });
 
 
 
     it('inGivenfirstName_whenEmptyLast_shouldEvaluatefalse', () => {
-        wrapper.vm.lastName = user.userWithEmptyFirstName.firstName;
+        wrapper.vm.lastName = userData.user.userWithEmptyFirstName.firstName;
 
-        expect((wrapper.vm).lastName).toBe(user.userWithEmptyFirstName.firstName)
+        expect((wrapper.vm).lastName).toBe(userData.user.userWithEmptyFirstName.firstName)
     });
 
 
     it('inGivenfirstName_improperLastName_shouldEvaluatefalse', () => {
-        wrapper.vm.lastName = user.userWithThan3CharInName.firstName;
+        wrapper.vm.lastName = userData.user.userWithThan3CharInName.firstName;
 
-        expect((wrapper.vm).lastName).toBe(user.userWithThan3CharInName.firstName)
+        expect((wrapper.vm).lastName).toBe(userData.user.userWithThan3CharInName.firstName)
     });
     it('inGivenfirstName_improperLastName_shouldEvaluatefalse', () => {
-        wrapper.vm.lastName = user.userWithThan3CharInName.firstName;
+        wrapper.vm.lastName = userData.user.userWithThan3CharInName.firstName;
 
-        expect((wrapper.vm).lastName).toBe(user.userWithThan3CharInName.firstName)
+        expect((wrapper.vm).lastName).toBe(userData.user.userWithThan3CharInName.firstName)
     });
 
 
     it('inGivenfirstName_improperLastNameandhavingSymbol_shouldEvaluatefalse', () => {
-        wrapper.vm.lastName = user.userWithThan3CharInName.firstName;
+        wrapper.vm.lastName = userData.user.userWithThan3CharInName.firstName;
 
-        expect((wrapper.vm).lastName).toBe(user.userWithThan3CharInName.firstName)
+        expect((wrapper.vm).lastName).toBe(userData.user.userWithThan3CharInName.firstName)
     });
 
     
     it('inGivenfirstName_properLastNameandhavingSymbol_shouldEvaluateTrue', () => {
-        wrapper.vm.lastName = user.properFirstName.firstName;
+        wrapper.vm.lastName = userData.user.properFirstName.firstName;
 
-        expect((wrapper.vm).lastName).toBe(user.properFirstName.firstName)
+        expect((wrapper.vm).lastName).toBe(userData.user.properFirstName.firstName)
     });
 
  
 
     it('inGivenPassword_properLastNameandhavingSymbol_shouldEvaluateTrue', () => {
-        wrapper.vm.password = user.properPassword.password;
+        wrapper.vm.password = userData.user.properPassword.password;
 
-        expect((wrapper.vm).password).toBe(user.properPassword.password)
+        expect((wrapper.vm).password).toBe(userData.user.properPassword.password)
     });
 
 
 
     
     it('inGivenPassword_properLastNameandhavingSymbol_shouldEvaluateFalse', () => {
-        wrapper.vm.password = user.properPassword.password;
+        wrapper.vm.password = userData.user.properPassword.password;
 
-        expect((wrapper.vm).password).toBe(user.properPassword.password)
+        expect((wrapper.vm).password).toBe(userData.user.properPassword.password)
     });
 
 
 
 
     it('inGivenCPassword_properLastNameandhavingSymbol_shouldEvaluateTrue', () => {
-        wrapper.vm.confirmPassword = user.properPassword.password;
+        wrapper.vm.confirmPassword = userData.user.properPassword.password;
 
-        expect((wrapper.vm).confirmPassword).toBe(user.properPassword.password)
+        expect((wrapper.vm).confirmPassword).toBe(userData.user.properPassword.password)
     });
 
     
     it('inGivenCPassword_properLastNameandhavingSymbol_shouldEvaluateFalse', () => {
-        wrapper.vm.confirmPassword = user.properPassword.password;
+        wrapper.vm.confirmPassword = userData.user.properPassword.password;
 
-        expect((wrapper.vm).confirmPassword).toBe(user.properPassword.password)
+        expect((wrapper.vm).confirmPassword).toBe(userData.user.properPassword.password)
     });
 })

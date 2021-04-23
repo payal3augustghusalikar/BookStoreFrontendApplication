@@ -19,7 +19,7 @@ describe('dashboard.vue', () => {
         localVue.use(Vuetify);
       //  localVue.use(VueMaterial);
         wrapper = shallowMount(dashboard, localVue);
-        console.log('dashboard', wrapper);
+       
     });
 
 

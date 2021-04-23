@@ -19,7 +19,7 @@ describe('Appbar.vue', () => {
         localVue.use(Vuetify);
       //  localVue.use(VueMaterial);
         wrapper = shallowMount(Appbar, localVue);
-        console.log('dashboard', wrapper);
+     
     });
 
 

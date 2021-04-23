@@ -1,5 +1,5 @@
 
-import MyCart from "../../pages/MyCart.vue";
+import MyCart from "../../pages/myCart.vue";
 import Appbar from "../../components/appbar.vue";
 import OrderSummary from "../../components/orderSummary.vue";
 import AddressDetails from "../../components/addressDetails.vue";

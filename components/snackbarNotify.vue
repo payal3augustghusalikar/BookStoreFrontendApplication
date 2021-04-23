@@ -10,29 +10,6 @@
 </template>
 
 
-// export default {
-//   show: (Boolean = false),
-//   text: (string = ""),
-//   timeout: (Number = 0),
- 
-
-
-  // mounted() {
-  //   this.$store.subscribe((mutation, state) => {
-  //     console.log(
-  //       mutation.type === "snackBar/SHOW_MESSAGE",
-  //       mutation.type === "snackbar/SHOW_MESSAGE"
-  //     );
-  //     console.log("mutation.type", mutation.type);
-  //     if (mutation.type === "snackbar" || mutation.type === "SHOW_MESSAGE") {
-  //       console.log("snackbar display");
-  //       this.text = state.snackBar.text;
-  //       this.timeout = 2500;
-  //       this.show = true;
-  //     }
-  //     //this.reset();
-  //   });
-  
 
 
 <script lang="ts">

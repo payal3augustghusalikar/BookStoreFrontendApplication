@@ -6,16 +6,17 @@
 }
 
 .book-wishlist-card {
-    height: 345px;
-    width: 274px;
+    height: 311px;
+    width: 251px;
     margin-top: 0px;
+    color: rgb(167, 171, 172);
 }
 
 
 .book-item-image {
 
-    height: 318px;
-    width: 225px;
+    height: 282px;
+    width: 191px;
 }
 
 .book-details .v-list-item {
@@ -27,7 +28,9 @@
   margin-right: -40px;
 }
 
-
+#break {
+    margin-bottom: 12px;
+}
 .add-to-bag {
     color: $white !important;
     background-color: #A03037 !important;
@@ -62,7 +65,7 @@
 }
 
 .full-layout {
-    height: 180%;
+    max-height: 200% !important
 }
 .add-bag-book-author {
     font-size: 12px;
@@ -97,3 +100,7 @@
       margin-right: 60px;
       font-size: 13px;
   }
+
+  ::-webkit-scrollbar {
+    display: none;
+}

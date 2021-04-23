@@ -21,14 +21,16 @@
                   ></v-img>
                 </v-row>
                 <v-row class="book-content mt-5">
-                  <v-list-item class="book-title">{{
+                 
+                  <div class="book-title" text-decoration= "none">{{
                     item.books.title
-                  }}</v-list-item>
+                    
+                  }}</div>
 
-                  <v-list-item class="book-author">{{
+                  <v-list-item  class="book-author">{{
                     item.books.author
                   }}</v-list-item>
-                  <v-list-item class="book-price mb-5">{{
+                  <v-list-item class="book-price mb-5" style="text-decoration: none">{{
                     "Rs." + item.books.price
                   }}</v-list-item>
                 </v-row>

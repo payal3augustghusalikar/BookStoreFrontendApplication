@@ -1,7 +1,7 @@
 import { Component, Vue } from "nuxt-property-decorator";
 
 import Snackbar from "../../components/snackbarNotify.vue";
-import MyCart from "../../pages/MyCart.vue";
+import MyCart from "../../pages/myCart.vue";
 import Appbar from "../../components/appbar.vue";
 
 

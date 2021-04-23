@@ -2,7 +2,7 @@
 
 import { createLocalVue, shallowMount } from '@vue/test-utils';
 //import fundooTitle from '../../src/components/fundooTitle.vue';
-import loginorsignup from '../../pages/loginOrSignUp.vue';
+import loginorsignup from '../../pages/loginorsignup.vue';
 import Vuetify from 'vuetify';
 //import VueMaterial from 'vue-material';
 //import userData from './*.json' ;
@@ -17,7 +17,7 @@ describe('loginOrSignUp.vue', () => {
         localVue.use(Vuetify);
         //  localVue.use(VueMaterial);
         wrapper = shallowMount(loginorsignup, localVue);
-        console.log('localVue', wrapper);
+       
     });
 
 

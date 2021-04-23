@@ -57,13 +57,14 @@
                 <v-list-item class="add-bag-book-description mt-5"
                   >Book Detail</v-list-item
                 >
+            
                 <v-list-item class="description">{{
                   item.books.description
                 }}</v-list-item>
               </v-row>
               <v-divider class="divider mt-5" />
               <v-row class="cust-feedback mb-5">
-                <v-list-item class="mt-5">Customer Feedback</v-list-item>
+                <v-list-item id="break" class="mt-5">Customer Feedback</v-list-item>
                 <br />
                 <v-card class="mx-auto feedback-card ml-3" outlined>
                   <h5 class="ml-5 mt-2 mb-2">Overall rating</h5>
