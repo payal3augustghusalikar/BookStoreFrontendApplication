@@ -23,11 +23,11 @@
 import { Prop, Vue, Component } from "vue-property-decorator";
 @Component({})
 export default class AddressDetails extends Vue{
-    private fullName: string = "";
-    private mobileNumber: string = "";
-    private address: string = "";
-    private city: string = "";
-    private state: string = ""; 
+    // private fullName: string = "";
+    // private mobileNumber: string = "";
+    // private address: string = "";
+    // private city: string = "";
+    // private state: string = ""; 
 
     rules = {
     required: (v: string) => !!v || "This field is required"
