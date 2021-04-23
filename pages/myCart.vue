@@ -91,9 +91,9 @@
           
 
             <v-row>
-              <v-card class="address-form1" outlined>
-                <OrderSummary ref="orderSummary" @onCheckOut="checkOut" />
-              </v-card>
+   <v-form class="address-form1" > 
+                <OrderSummary  ref="orderSummary" @onCheckOut="checkOut"  />
+           </v-form> 
             </v-row>
               </v-flex>
          
@@ -114,12 +114,16 @@ import { Prop, Vue, Component } from "vue-property-decorator";
 import AppBar from "../components/appbar.vue";
 import user from "../services/user";
 import AddressDetails from "../components/addressDetails.vue";
+import OrderSummary from "../components/orderSummary.vue";
 @Component({
   components: {
     AppBar,
     AddressDetails,
+    OrderSummary
   },
 })
+
+
 export default class myCart extends Vue {
   // @Prop() private addedToCartItems!: object;
   // addedCartItems: any;
@@ -129,7 +133,7 @@ export default class myCart extends Vue {
   private wishlist: any;
   private isOrderPlaced: boolean = false;
   @Prop() private counter_value!: number;
-  private orderList: any;
+  private orderList: any=[];
 
   allCartBooks1: any = [
     {
@@ -221,29 +225,22 @@ export default class myCart extends Vue {
   //   }
 
   placeOrder = (item: any) => {
-    this.isOrderPlaced = true;
- const orderSummary: any = this.$refs.orderSummary;
+    // this.isOrderPlaced = true;
+
+    // item.books.bookCount = this.counter_value;
+
+    // const addressdetails: any = this.$refs.addressdetails;
+    // addressdetails.showDetails();
+
+this.isOrderPlaced = true;
+    const orderSummary: any = this.$refs.orderSummary;
     item.books.bookCount = this.counter_value;
-       orderSummary.setBook(item);
+    orderSummary.setBook(item);
     const addressdetails: any = this.$refs.addressdetails;
     addressdetails.showDetails();
-  };
 
-checkOut(book: any) {
-    if (
-      (this.$refs.addressForm as Vue & { validate: () => boolean }).validate()
-    ) {
-      this.orderList.push(book);
-      const filteredItems = this.items.filter((item: any) => item !== book);
-      this.$router.push({
-        path: "/confirmOrder",
-        query: {
-          books: filteredItems,
-          wishlistBooks: this.wishlist,
-          orderedBooks: this.orderList
-        }
-      });
-    }
+
+  };
 
   @Prop() allBooks1: any;
 
@@ -275,6 +272,29 @@ checkOut(book: any) {
         this.$refs.snack.setSnackbar(snack);
       });
   };
+
+checkOut(book: any) {
+    if (
+      (this.$refs.addressForm as Vue & { validate: () => boolean }).validate()
+    ) {
+         console.log("this.$refs.addressForm", this.$refs.addressForm)
+      console.log("ordrelist", this.orderList)
+      this.orderList.push(book);
+    //  const filteredItems = this.items.filter((item: any) => item !== book);
+         console.log("ordrelist1", this.orderList)
+    this.$router.push({
+        path: "/confirmOrder",
+     //   query: {
+         // books: filteredItems,
+       //   wishlistBooks: this.wishlist,
+      //    orderedBooks: this.orderList
+      //  }
+      });
+    }
+  }
+
+
+
 }
 </script>
 

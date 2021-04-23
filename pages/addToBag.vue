@@ -96,7 +96,7 @@
       </v-col>
 
       <Snackbar ref="snack" />
-      <MyCart ref="myCart" :addedToCartItems="newItem" />
+      <MyCart v-show="false" ref="myCart" :addedToCartItems="newItem" />
     </v-content>
   </v-app>
 </template>
