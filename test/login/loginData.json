@@ -1,0 +1,26 @@
+{
+    "user": {
+        
+        "NotregisterUserProperDatatoLogin": {
+            "emailId": "ghusalikar1apayal333333@gmail.com",
+            "password": "AAAAAAA"
+        },
+      
+        "loginUserProperData": {
+          "emailId": "ghusalikarpayal58@gmail.com",
+          "password": "AAAAAAA"
+        },
+        "loginUserImproperData": {
+            "emailId": "zzzz@gmail.com",
+            "password": ""
+        },
+        "loginUserEmptyEmail": {
+            "emailId": "",
+            "password": "Ghjjjjj"
+        },
+        "loginUserImproperEmail": {
+            "emailId": "ghusalikarapayal2",
+            "password": "Ghjjjjj"
+        }
+    }
+}

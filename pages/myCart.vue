@@ -125,16 +125,9 @@ import OrderSummary from "../components/orderSummary.vue";
 
 
 export default class myCart extends Vue {
-  // @Prop() private addedToCartItems!: object;
-  // addedCartItems: any;
-  private newAddedToCartItems: any = [];
   newArray2: any;
-  private items: any;
-  private wishlist: any;
-  private isOrderPlaced: boolean = false;
   @Prop() private counter_value!: number;
   private orderList: any=[];
-
   allCartBooks1: any = [
     {
       books: {

@@ -1,0 +1,57 @@
+{
+    "user": {
+        "registerUserProperData": {
+            "firstName": "Payal",
+            "lastName": "Payal",
+            "emailId": "ghusalikarpayal58@gmail.com",
+            "password": "AAAAAAA",
+            "confirmPassword": "AAAAAAA"
+        },
+      
+        "userWithEmptyFirstName": {
+            "firstName": "",
+            "lastName": "Payal",
+            "emailId": "ghusalikarapayal2@gmail.com",
+            "password": "AAAAAAA",
+            "confirmPassword": "AAAAAAA"
+        },
+
+        "userWithEmptyLastName": {
+            "firstName": "Payal",
+            "lastName": "",
+            "emailId": "ghusalikarapayal2@gmail.com",
+            "password": "AAAAAAA",
+            "confirmPassword": "AAAAAAA"
+        },
+        "userWithImproperEmail": {
+            "firstName": "Payal",
+            "lastName": "Payal",
+            "emailId": "ghusalikarapayal2gmail.com",
+            "password": "AAAAAAA",
+            "confirmPassword": "AAAAAAA"
+        },
+        "userWithEmptyEmail": {
+            "firstName": "Payal",
+            "lastName": "Payal",
+            "emailId": "",
+            "password": "AAAAAAA",
+            "confirmPassword": "AAAAAAA"
+        },
+        "userWithThan3CharInName": {
+            "firstName": "Pa",
+            "lastName": "Payal",
+            "emailId": "ghusalikarapayal2@gmail.com",
+            "password": "AAAAAAA",
+            "confirmPassword": "AAAAAAA"
+        },
+        "PasswordAndConfirmPasswordNotSame": {
+            "firstName": "Pay",
+            "lastName": "Payal",
+            "emailId": "ghusalikarapayal5555@gmail.com",
+            "password": "AAAAAAA",
+            "confirmPassword": ""
+        }
+
+      
+    }
+}
