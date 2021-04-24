@@ -30,18 +30,20 @@
             </div>
           </ul>
  <nuxt-link
-        :to="{ path: 'myCart'}"
+        :to="{ path: 'myCart'}" text-decoration="none"
       >
+      {{cartItemQuantity}}
           <ul> 
             <v-img
               class="mx-2 supermarket-icon white--text headline"
               contain
               :src="require('@/assets/scss/images/supermarket.svg')"
-            > {{cartItemCounter}}</v-img>
+            > {{cartItemQuantity}}</v-img>
             <p id="bottom-name-cart">cart</p> 
           </ul>
+         
            </nuxt-link>
-            <v-badge id="counter" color="#A03037" :content="2"></v-badge>
+            <v-badge id="counter" color="#A03037" :content="this.cartItemCounter"></v-badge>
         </v-app-bar>
       </v-row>
     </v-card>
@@ -52,19 +54,19 @@
 import Vue from "vue";
  import { Prop } from "vue-property-decorator";
 export default class appbar extends Vue {
-  @Prop() private cartItemCounter!: any;
-    // cartItemCounter: number=0;
+  @Prop()  cartItemQuantity!: number;
+   @Prop()  cartItemCounter!: number;
+   
 
-beforeMount() {
-  console.log("cartItemCounter in mount", this.cartItemCounter)
-  // this.cartItemCounter = addedToCartItems.length;
+mounted() {
+  console.log("cartItemCounter in mount", this.cartItemQuantity)
 }
 
-  setAddedToCartItems(addedToCartItems: any) {
-   // if (addedToCartItems != undefined) {
-    this.cartItemCounter =addedToCartItems.length;
+  setAddedToCartItems(cartItemQuantity: number) {
+ 
+    this.cartItemCounter = cartItemQuantity;
         console.log("cartItemCounter", this.cartItemCounter)
-   // }
+  
   }
 }
 </script>

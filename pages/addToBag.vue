@@ -25,7 +25,7 @@
               <v-row class="d-flex">
                 <v-btn
                   class="add-to-bag white--text mt-5"
-                  @click="addToCart(item.books.bookId)"
+                  @click="addToCart(item)"
                   :disabled="isAddedToCart"
                   >{{ addToBagText }}</v-btn
                 >
@@ -97,7 +97,8 @@
       </v-col>
 
       <Snackbar ref="snack" />
-      <MyCart v-show="false" ref="myCart" :addedToCartItems="newItem" />
+      <MyCart v-show="false" ref="myCart" />
+        <Books v-show="false" ref="books" />
     </v-content>
   </v-app>
 </template>
@@ -105,6 +106,7 @@
 <script lang="ts">
 import { Prop, Vue, Component, Watch } from "vue-property-decorator";
 import AppBar from "../components/appbar.vue";
+import Books from "../components/books.vue";
 import MyCart from "./myCart.vue";
 import Snackbar from "../components/snackbarNotify.vue";
 import user from "../services/user";
@@ -113,6 +115,7 @@ import user from "../services/user";
     AppBar,
     MyCart,
     Snackbar,
+    Books
   },
 })
 export default class AddToBag extends Vue {
@@ -134,9 +137,8 @@ export default class AddToBag extends Vue {
     this.item = this.$route.query.book;
   }
   mounted() {
-   
+
     this.book;
-   
   }
 
   goToHome() {
@@ -144,23 +146,80 @@ export default class AddToBag extends Vue {
   }
   bookInput: any = {};
 
-  addToCart(id: any) {
-    console.log("adding to cart", id);
+  // addToCart(id: any) {
+  //   console.log("adding to cart", id);
+  //   const child: any = this.$refs.snack;
+  //   try {
+  //     this.bookInput = {
+  //       isAddedToBag: true,
+  //     };
+  
+  //     console.log(
+  //       "noteData, id",
+  //       id,
+  //       (this.bookInput = {
+  //         isAddedToBag: true,
+  //       })
+  //     );
+  //     return user
+  //       .addToBag(this.bookInput, id)
+  //       .then((result) => {
+  //         result = result.data.data;
+  //         console.log("Moved To bag", result);
+  //         const snackbarData = {
+  //           text: "Book added to cart",
+  //           timeout: this.timeout,
+  //         };
+
+      
+  //           setTimeout(() => {
+  //             this.isAddedToCart = true;
+  //             this.addToBagText = "ADDED TO BAG";
+  //           }, 1000);
+  //           this.$refs.snack.setSnackbar(snackbarData);
+  //           this.$refs.books.displayAllBooks();
+  //           this.$refs.myCart.displayAllBooks();
+         
+  //       })
+  //       .catch((error) => {
+  //         const snackbarData = {
+  //           text: error,
+  //           timeout: this.timeout,
+  //         };
+  //         this.$refs.snack.setSnackbar(snackbarData);
+  //       });
+
+    
+  //   } catch (error) {
+  //     const snackbarData = {
+  //       text: error,
+  //       timeout: this.timeout,
+  //     };
+  //     this.$refs.snack.setSnackbar(snackbarData);
+  //   }
+  // }
+
+
+
+
+addToCart(item: any) {
+    console.log("adding to cart", item.books.bookId);
     const child: any = this.$refs.snack;
     try {
-      this.bookInput = {
-        isAddedToBag: true,
-      };
-  
-      console.log(
-        "noteData, id",
-        id,
-        (this.bookInput = {
+       if (item.books.isAddedToBag == false)
+        this.bookInput = {
           isAddedToBag: true,
-        })
-      );
+        };
+  console.log("isaddedto bag" , this.bookInput.isAddedToBag )
+      // console.log(
+      //   "noteData, id",
+      //   id,
+      //   (this.bookInput = {
+      //     isAddedToBag: true,
+      //   })
+      // );
       return user
-        .addToBag(this.bookInput, id)
+        .addToBag(this.bookInput,  item.books.bookId)
         .then((result) => {
           result = result.data.data;
           console.log("Moved To bag", result);
@@ -169,13 +228,15 @@ export default class AddToBag extends Vue {
             timeout: this.timeout,
           };
 
-         // if (result == undefined) {
+      
             setTimeout(() => {
               this.isAddedToCart = true;
               this.addToBagText = "ADDED TO BAG";
             }, 1000);
             this.$refs.snack.setSnackbar(snackbarData);
-          //}
+            this.$refs.books.displayAllBooks();
+         //   this.$refs.myCart.displayAllBooks();
+         
         })
         .catch((error) => {
           const snackbarData = {
@@ -194,6 +255,12 @@ export default class AddToBag extends Vue {
       this.$refs.snack.setSnackbar(snackbarData);
     }
   }
+
+
+
+
+
+
 
   addToWishlist() {
     try {
